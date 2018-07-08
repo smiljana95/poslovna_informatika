@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import poslovna.dto.ArtikalDTO;
 import poslovna.dto.CenovnikDTO;
-import poslovna.model.Artikal;
 import poslovna.model.Cenovnik;
 
 @Component
@@ -29,7 +27,9 @@ public class CenovnikToCenovnikDTOConverter implements Converter<Cenovnik, Cenov
 		cenovnikDTO.setId(source.getId());
 		cenovnikDTO.setStavkaCenovnikaDTO(converter.convert(source.getStavkeUCenovniku()));
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		cenovnikDTO.setAktivan(source.isAktivan());
 		cenovnikDTO.setDatumPocetkaVazenja(df.format(source.getDatum_pocetka_vazenja()));
+		cenovnikDTO.setIdKompanije(source.getKompanija().getId());
 	return cenovnikDTO;
 	}
 	

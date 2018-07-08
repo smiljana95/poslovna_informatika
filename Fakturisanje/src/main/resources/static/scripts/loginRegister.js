@@ -17,8 +17,12 @@ function buttonLoginClick() {
         type: "POST",
         contentType: "application/json",
         data: data,
-        success: function () {
-        	top.location.href = "home.html";
+        success: function (data) {
+        	if(data.role == 'ADMIN'){
+        		top.location.href = "homeAdmin.html";
+        	}else if(data.role == 'REGISTERED'){
+        		top.location.href = "home.html";
+        	}
         },
         error: function (jqXHR, textStatus, errorThrown) {
             toastr["error"](jqXHR.responseText);

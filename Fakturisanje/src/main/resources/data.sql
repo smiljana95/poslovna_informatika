@@ -32,8 +32,6 @@ insert into grupa_artikala (naziv, id_tipapdva) values ('proizvodi1',1);
 insert into grupa_artikala (naziv, id_tipapdva) values ('proizvodi2',2);
 
 
-
-
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Patike', 'lepe patike', 1,1);
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Majica', 'roza', 1,1);
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Pantalone', 'dugacke', 1,1);
@@ -42,13 +40,18 @@ insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Krompir', 'mladi krompir', 2,1);
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Paradajz', 'svez', 2,2);
 
+	
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', null, 1, true);
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', null, 2, true);
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', null, 3, true);
-	
+	insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
+	values ('2016-11-29 21:00:00', 1, null, true);
+insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
+	values ('2016-11-29 21:00:00', 1, null, false);
+
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (1, 1, 20);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (2, 1, 10);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 1, 50);
@@ -59,8 +62,18 @@ insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 2, 4);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (6, 3, 12);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (7, 3, 12);
 
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (1, 4, 20);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (2, 4, 10);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 4, 50);
 
 
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (4, 5, 2);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 5, 4);
+
+
+insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_grada, id_kompanije, role) values 
+	('tamara@gmail.com', 'Tamara', 'Perlinac', 'tamara', '12345', 'Vuka Karadzica 363', 1, 1, 'ADMIN');
+	
 	
 insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_grada, id_kompanije, role) values 
 	('smiljana@gmail.com', 'Smiljana', 'Dragoljevic', 'smiljana', '12345', 'Bulevar Evrope 19', 1, 1, 'REGISTERED');

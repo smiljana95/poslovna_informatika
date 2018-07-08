@@ -36,7 +36,14 @@ public class RadnikController {
 			return new ResponseEntity<>("Incorrect email or password!", HttpStatus.BAD_REQUEST);
 		}
 		radnikService.setCurrentUser(radnik);
-		return new ResponseEntity<>(HttpStatus.OK);
+		
+		String role = "";
+		if(radnik.getRole().equals(Role.ADMIN)) {
+			role = "ADMIN";
+		} else if(radnik.getRole().equals(Role.REGISTERED)) {
+			role = "REGISTERED";
+		}
+		return new ResponseEntity<>(new LoggedInUserDTO(radnik.getIme(), role, radnik.getId(),radnik.getKompanija().getId()),HttpStatus.OK);
 	}
 	
 	@PreAuthorize("isAuthenticated()")

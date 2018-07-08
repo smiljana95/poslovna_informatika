@@ -17,4 +17,13 @@ public class CenovnikService {
 	public Cenovnik findByPoslovniPartnerIdAndAktivan(Long id){
 		return cenovnikRepository.findByPoslovniPartnerIdAndAktivan(id,true);
 	}
+	public List<Cenovnik> findByKompanija(Long idKompanije) {
+		return cenovnikRepository.findByKompanijaId(idKompanije);
+	}
+	public Cenovnik findById(Long id){
+		return cenovnikRepository.findOne(id);
+	}
+	public Cenovnik save(Cenovnik toSave){
+		return cenovnikRepository.save(toSave);
+	}
 }

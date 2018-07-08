@@ -27,7 +27,7 @@ public class StavkaCenovnikaToStavkaCenovnikaDTOConverter implements Converter<S
 		stavkaCenovnikaDTO.setArtikalDTO(converter.convert(source.getArtikal()));
 		stavkaCenovnikaDTO.setCena(source.getCena());
 		stavkaCenovnikaDTO.setId(source.getId());
-		
+		stavkaCenovnikaDTO.setIdCenovnika(source.getCenovnik().getId());
 		return stavkaCenovnikaDTO;
 	}
 	

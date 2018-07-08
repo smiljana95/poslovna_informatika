@@ -4,6 +4,7 @@ public class StavkaCenovnikaDTO {
 		private ArtikalDTO artikalDTO;
 		private Long id;
 		private double cena;
+		private Long idCenovnika;
 		public ArtikalDTO getArtikalDTO() {
 			return artikalDTO;
 		}
@@ -21,6 +22,12 @@ public class StavkaCenovnikaDTO {
 		}
 		public void setCena(double cena) {
 			this.cena = cena;
+		}
+		public Long getIdCenovnika() {
+			return idCenovnika;
+		}
+		public void setIdCenovnika(Long idCenovnika) {
+			this.idCenovnika = idCenovnika;
 		}
 		public StavkaCenovnikaDTO(ArtikalDTO artikalDTO, Long id, double cena) {
 			

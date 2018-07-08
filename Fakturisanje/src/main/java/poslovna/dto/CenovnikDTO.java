@@ -6,6 +6,9 @@ public class CenovnikDTO {
 	private Long id;
 	private String datumPocetkaVazenja;
 	private List<StavkaCenovnikaDTO> stavkaCenovnikaDTO;
+	private boolean aktivan;
+	private Long idKompanije;
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,6 +35,18 @@ public class CenovnikDTO {
 	}
 	public CenovnikDTO() {
 		super();
+	}
+	public Long getIdKompanije() {
+		return idKompanije;
+	}
+	public void setIdKompanije(Long idKompanije) {
+		this.idKompanije = idKompanije;
+	}
+	public boolean isAktivan() {
+		return aktivan;
+	}
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
 	}
 	
 	

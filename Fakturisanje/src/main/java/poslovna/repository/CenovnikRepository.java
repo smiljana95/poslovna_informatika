@@ -12,4 +12,5 @@ public interface CenovnikRepository extends JpaRepository<Cenovnik, Long> {
 
 	Cenovnik findByPoslovniPartnerIdAndAktivan(Long id, boolean b);
 
+	List<Cenovnik> findByKompanijaId(Long idKompanije);
 }
