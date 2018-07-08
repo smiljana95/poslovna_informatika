@@ -27,11 +27,10 @@ public class Artikal {
 	@Column(length = 100)
 	private String opis;
 	
+	@OneToMany(mappedBy = "artikal", cascade = CascadeType.REMOVE)
+    protected List<StavkaUFakturi> stavkaUFakturi;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_stavke", nullable = false)
-    private StavkaUFakturi stavkaFakture;
-
+	
 	@OneToMany(mappedBy = "artikal", cascade = CascadeType.REMOVE)
     protected List<MagacinskaKartica> artikliNaLageru;
 	
@@ -42,7 +41,7 @@ public class Artikal {
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_grupe_artikala", nullable = false)
+    @JoinColumn(name = "id_grupe_artikala",nullable=true)
     private GrupaArtikala grupaArtikala;
 	
 	@OneToMany(mappedBy = "artikal", cascade = CascadeType.REMOVE)
@@ -90,19 +89,13 @@ public class Artikal {
 	}
 
 
-	public StavkaUFakturi getStavkaFakture() {
-		return stavkaFakture;
-	}
+	
 
-	public void setStavkaFakture(StavkaUFakturi stavkaFakture) {
-		this.stavkaFakture = stavkaFakture;
-	}
-
-	public Artikal(String naziv, String opis, StavkaUFakturi stavkaFakture) {
+	public Artikal(String naziv, String opis) {
 		super();
 		this.naziv = naziv;
 		this.opis = opis;
-		this.stavkaFakture = stavkaFakture;
+		this.stavkaUFakturi = new ArrayList<StavkaUFakturi>();
 		artikliNaLageru = new ArrayList<MagacinskaKartica>();
 		stavkaUCenovniku = new ArrayList<StavkaUCenovniku>();
 	}
@@ -110,6 +103,7 @@ public class Artikal {
 	public Artikal() {
 		artikliNaLageru = new ArrayList<MagacinskaKartica>();
 		stavkaUCenovniku = new ArrayList<StavkaUCenovniku>();
+		this.stavkaUFakturi = new ArrayList<StavkaUFakturi>();
 	}
 	
 	

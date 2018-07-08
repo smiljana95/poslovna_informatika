@@ -54,7 +54,7 @@ public class RadnikController {
 		} else if(loggedIn.getRole().equals(Role.REGISTERED)) {
 			role = "REGISTERED";
 		}
-        return new ResponseEntity<>(new LoggedInUserDTO(loggedIn.getIme(), role, loggedIn.getId()), HttpStatus.OK);
+        return new ResponseEntity<>(new LoggedInUserDTO(loggedIn.getIme(), role, loggedIn.getId(),loggedIn.getKompanija().getId()), HttpStatus.OK);
     }
 	
 	@PreAuthorize("isAuthenticated()")
