@@ -7,12 +7,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import poslovna.dto.ArtikalDTO;
 import poslovna.dto.CenovnikDTO;
 import poslovna.model.Artikal;
 import poslovna.model.Cenovnik;
 
+@Component
 public class CenovnikToCenovnikDTOConverter implements Converter<Cenovnik, CenovnikDTO> {
 
 	@Autowired

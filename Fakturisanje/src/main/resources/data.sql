@@ -49,15 +49,15 @@ insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', null, 3, true);
 	
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (1, 1, 20);
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (2, 1, 10);
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (3, 1, 50);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (1, 1, 20);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (2, 1, 10);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 1, 50);
 
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (4, 2, 2);
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (5, 2, 4);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (4, 2, 2);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 2, 4);
 
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (6, 3, 12);
-insert into stavka_u_cenovniku (id_artikla, , id_cenovnika, cena) values (7, 3, 12);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (6, 3, 12);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (7, 3, 12);
 
 
 

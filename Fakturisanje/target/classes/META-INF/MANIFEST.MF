@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: poslovna
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Jelena
+Built-By: Lidija
 Implementation-Vendor-Id: Poslovna
-Build-Jdk: 1.8.0_111
+Build-Jdk: 1.8.0_144
 Implementation-URL: http://projects.spring.io/spring-boot/Fakturisanje
  /
 Created-By: Maven Integration for Eclipse
