@@ -29,6 +29,10 @@ public class Cenovnik {
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_poslovnog_partnera", nullable = false)
+    private PoslovniPartner poslovniPartner;
+	
 	private boolean aktivan;
 
 	public Long getId() {
@@ -78,6 +82,14 @@ public class Cenovnik {
 
 	public void setAktivan(boolean aktivan) {
 		this.aktivan = aktivan;
+	}
+
+	public PoslovniPartner getPoslovniPartner() {
+		return poslovniPartner;
+	}
+
+	public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
+		this.poslovniPartner = poslovniPartner;
 	}
 	
 }

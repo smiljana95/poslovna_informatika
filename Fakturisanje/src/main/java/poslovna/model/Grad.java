@@ -19,7 +19,7 @@ public class Grad {
 	private Long id;
 	
 	@Column(length = 5)
-	private int PTT;
+	private int ptt;
 	
 	@Column(length = 100)
 	private String naziv;
@@ -29,13 +29,17 @@ public class Grad {
 	
 	@OneToMany(mappedBy = "grad", cascade = CascadeType.REMOVE)
     protected List<Kompanija> kompanije;
+	
+	@OneToMany(mappedBy = "grad", cascade = CascadeType.REMOVE)
+    protected List<PoslovniPartner> poslovniPartneri;
 
 	public Grad(Long id, int pTT, String naziv) {
 		this.id = id;
-		PTT = pTT;
+		ptt = pTT;
 		this.naziv = naziv;
 		korisnici = new ArrayList<Radnik>();
 		kompanije = new ArrayList<Kompanija>();
+		poslovniPartneri = new ArrayList<PoslovniPartner>();
 	}
 	
 	public Grad() {
@@ -52,11 +56,11 @@ public class Grad {
 	}
 
 	public int getPTT() {
-		return PTT;
+		return ptt;
 	}
 
 	public void setPTT(int pTT) {
-		PTT = pTT;
+		ptt = pTT;
 	}
 
 	public String getNaziv() {
@@ -65,6 +69,30 @@ public class Grad {
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
+	}
+
+	public List<Radnik> getKorisnici() {
+		return korisnici;
+	}
+
+	public void setKorisnici(List<Radnik> korisnici) {
+		this.korisnici = korisnici;
+	}
+
+	public List<Kompanija> getKompanije() {
+		return kompanije;
+	}
+
+	public void setKompanije(List<Kompanija> kompanije) {
+		this.kompanije = kompanije;
+	}
+
+	public List<PoslovniPartner> getPoslovniPartneri() {
+		return poslovniPartneri;
+	}
+
+	public void setPoslovniPartneri(List<PoslovniPartner> poslovniPartneri) {
+		this.poslovniPartneri = poslovniPartneri;
 	}
 	
 }

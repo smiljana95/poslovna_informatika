@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class ArtikalNaLageru {
+public class MagacinskaKartica {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +25,10 @@ public class ArtikalNaLageru {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_poslovnog_partnera", nullable = false)
+    private PoslovniPartner poslovniPartner;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_artikla", nullable = false)
@@ -62,15 +66,23 @@ public class ArtikalNaLageru {
 		this.artikal = artikal;
 	}
 
-	public ArtikalNaLageru(int kolicna, Kompanija kompanija, Artikal artikal) {
+	public MagacinskaKartica(int kolicna, Kompanija kompanija, Artikal artikal) {
 		super();
 		this.kolicna = kolicna;
 		this.kompanija = kompanija;
 		this.artikal = artikal;
 	}
 
-	public ArtikalNaLageru() {
+	public MagacinskaKartica() {
 		
+	}
+
+	public PoslovniPartner getPoslovniPartner() {
+		return poslovniPartner;
+	}
+
+	public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
+		this.poslovniPartner = poslovniPartner;
 	}
 	
 	

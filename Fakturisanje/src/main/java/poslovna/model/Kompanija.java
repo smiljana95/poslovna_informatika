@@ -24,7 +24,7 @@ public class Kompanija {
 	@Column(length = 100)
 	private String naziv;
 	
-	private Long PID;
+	private Long pid;
 	
 	@Column(length = 60)
 	private String adresa;
@@ -35,11 +35,8 @@ public class Kompanija {
 	@Column(length = 20)
 	private String brojRacuna;
 	
-	@OneToMany(mappedBy = "nadredjena", cascade = CascadeType.REMOVE)
-    protected List<PoslovniPartner> podredjene;  //one kojima je ona nadredjena
-	
-	@OneToMany(mappedBy = "podredjena", cascade = CascadeType.REMOVE)
-    protected List<PoslovniPartner> nadredjene;  //one kojima je ona podredjena
+	@OneToMany(mappedBy = "kompanija", cascade = CascadeType.REMOVE)
+    protected List<PoslovniPartner> poslovniPartneri;  //one kojima je ona podredjena
 	
 	@OneToMany(mappedBy = "kompanija", cascade = CascadeType.REMOVE)
     protected List<FiskalnaGodina> fiskalneGodine;
@@ -48,7 +45,7 @@ public class Kompanija {
     protected List<Faktura> fakture;
 	
 	@OneToMany(mappedBy = "kompanija", cascade = CascadeType.REMOVE)
-    protected List<ArtikalNaLageru> artikliNaLageru;
+    protected List<MagacinskaKartica> artikliNaLageru;
 	
 	@OneToMany(mappedBy = "kompanija", cascade = CascadeType.REMOVE)
     protected List<Radnik> radnici;
@@ -62,11 +59,10 @@ public class Kompanija {
 	
 	
 	public Kompanija() {
-		podredjene = new ArrayList<PoslovniPartner>();
-		nadredjene = new ArrayList<PoslovniPartner>();
+		poslovniPartneri = new ArrayList<PoslovniPartner>();
 		fiskalneGodine = new ArrayList<FiskalnaGodina>();
 		fakture = new ArrayList<Faktura>();
-		artikliNaLageru = new ArrayList<ArtikalNaLageru>();
+		artikliNaLageru = new ArrayList<MagacinskaKartica>();
 		radnici = new ArrayList<Radnik>();
 		cenovnici = new ArrayList<Cenovnik>();
 	}
@@ -93,12 +89,12 @@ public class Kompanija {
 
 
 	public Long getPID() {
-		return PID;
+		return pid;
 	}
 
 
 	public void setPID(Long pID) {
-		PID = pID;
+		pid = pID;
 	}
 
 
@@ -132,23 +128,13 @@ public class Kompanija {
 	}
 
 
-	public List<PoslovniPartner> getPodredjene() {
-		return podredjene;
+	public List<PoslovniPartner> getPoslovniPartneri() {
+		return poslovniPartneri;
 	}
 
 
-	public void setPodredjene(List<PoslovniPartner> podredjene) {
-		this.podredjene = podredjene;
-	}
-
-
-	public List<PoslovniPartner> getNadredjene() {
-		return nadredjene;
-	}
-
-
-	public void setNadredjene(List<PoslovniPartner> nadredjene) {
-		this.nadredjene = nadredjene;
+	public void setPoslovniPartneri(List<PoslovniPartner> poslovniPartneri) {
+		this.poslovniPartneri = poslovniPartneri;
 	}
 
 
@@ -172,12 +158,12 @@ public class Kompanija {
 	}
 
 
-	public List<ArtikalNaLageru> getArtikliNaLageru() {
+	public List<MagacinskaKartica> getArtikliNaLageru() {
 		return artikliNaLageru;
 	}
 
 
-	public void setArtikliNaLageru(List<ArtikalNaLageru> artikliNaLageru) {
+	public void setArtikliNaLageru(List<MagacinskaKartica> artikliNaLageru) {
 		this.artikliNaLageru = artikliNaLageru;
 	}
 

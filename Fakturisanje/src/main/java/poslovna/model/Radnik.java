@@ -2,6 +2,8 @@ package poslovna.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +43,9 @@ public class Radnik {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public Long getId() {
 		return id;
@@ -99,7 +104,7 @@ public class Radnik {
 	}
 
 	public Radnik(String email, String ime, String prezime, String lozinka, String kontaktTelefon, String adresa,
-			Grad grad) {
+			Grad grad, Role role) {
 		
 		this.email = email;
 		this.ime = ime;
@@ -108,16 +113,35 @@ public class Radnik {
 		this.kontaktTelefon = kontaktTelefon;
 		this.adresa = adresa;
 		this.grad = grad;
+		this.role = role;
 	}
 
 	public Radnik() {
 		
 	}
-	
-	
-	
-	
-	
-	
+
+	public Grad getGrad() {
+		return grad;
+	}
+
+	public void setGrad(Grad grad) {
+		this.grad = grad;
+	}
+
+	public Kompanija getKompanija() {
+		return kompanija;
+	}
+
+	public void setKompanija(Kompanija kompanija) {
+		this.kompanija = kompanija;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 }

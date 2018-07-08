@@ -33,7 +33,7 @@ public class Artikal {
     private StavkaUFakturi stavkaFakture;
 
 	@OneToMany(mappedBy = "artikal", cascade = CascadeType.REMOVE)
-    protected List<ArtikalNaLageru> artikliNaLageru;
+    protected List<MagacinskaKartica> artikliNaLageru;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -103,12 +103,12 @@ public class Artikal {
 		this.naziv = naziv;
 		this.opis = opis;
 		this.stavkaFakture = stavkaFakture;
-		artikliNaLageru = new ArrayList<ArtikalNaLageru>();
+		artikliNaLageru = new ArrayList<MagacinskaKartica>();
 		stavkaUCenovniku = new ArrayList<StavkaUCenovniku>();
 	}
 
 	public Artikal() {
-		artikliNaLageru = new ArrayList<ArtikalNaLageru>();
+		artikliNaLageru = new ArrayList<MagacinskaKartica>();
 		stavkaUCenovniku = new ArrayList<StavkaUCenovniku>();
 	}
 	
