@@ -29,7 +29,9 @@ public class CenovnikToCenovnikDTOConverter implements Converter<Cenovnik, Cenov
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		cenovnikDTO.setAktivan(source.isAktivan());
 		cenovnikDTO.setDatumPocetkaVazenja(df.format(source.getDatum_pocetka_vazenja()));
-		cenovnikDTO.setIdKompanije(source.getKompanija().getId());
+		if(source.getKompanija()!=null){
+			cenovnikDTO.setIdKompanije(source.getKompanija().getId());
+		}
 	return cenovnikDTO;
 	}
 	
