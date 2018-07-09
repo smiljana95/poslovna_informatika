@@ -24,6 +24,3 @@ $(document).ready(function () {
 		});
 })
 
-function naruci(idCenovnika, idArtikla) {
-	$('#modalNaruci').modal('toggle');
-}

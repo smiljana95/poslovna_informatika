@@ -21,4 +21,8 @@ public class StavkaUCenovnikuService {
 	public StavkaUCenovniku save(StavkaUCenovniku toSave){
 		return stavkaRepository.save(toSave);
 	}
+	public StavkaUCenovniku findByArtikalIdAndCenovnikId(Long idArtikla, Long idCenovnika) {
+		// TODO Auto-generated method stub
+		return stavkaRepository.findByArtikalIdAndCenovnikId(idArtikla,idCenovnika);
+	}
 }

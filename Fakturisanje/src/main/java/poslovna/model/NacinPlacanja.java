@@ -22,6 +22,9 @@ public class NacinPlacanja {
 	@OneToMany(mappedBy = "nacinPlacanja", cascade = CascadeType.REMOVE)
     protected List<Faktura> faktura;
 	
+	@OneToMany(mappedBy = "nacinPlacanja", cascade = CascadeType.REMOVE)
+    protected List<Narudzbenica> narudzbenice;
+	
 	public NacinPlacanja() {
 		faktura = new ArrayList<Faktura>();
 	}

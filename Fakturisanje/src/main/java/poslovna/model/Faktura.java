@@ -54,8 +54,23 @@ public class Faktura {
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
 	
+	//od koga je naruceno
+		@ManyToOne(fetch = FetchType.EAGER)
+	    @JoinColumn(name = "id_PP", nullable = false)
+	    private PoslovniPartner poslovniPartner;
+	
 	@OneToMany(mappedBy = "faktura", cascade = CascadeType.REMOVE)
     protected List<StavkaUFakturi> stavke;
+
+	
+	
+	public PoslovniPartner getPoslovniPartner() {
+		return poslovniPartner;
+	}
+
+	public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
+		this.poslovniPartner = poslovniPartner;
+	}
 
 	public Long getId() {
 		return id;

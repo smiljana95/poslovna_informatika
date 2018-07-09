@@ -22,13 +22,13 @@ $(document).ready(function () {
         	        	
         	        	for(i=0;i<data.length;i++){
         	        		if(data[i].tipPoslovnogPartneraDTO.naziv == 'dobavljac'){
-        	        			divDobavljaci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnik('+data[i].id+')\">Prikazi cenovnik</button></td></tr>');
+        	        			divDobavljaci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziNarudzbenice('+data[i].id+')\">Prikazi narudzbenice</button></td></tr>');
         	        			ceoDivDob.append(divDobavljaci);
         	        		}else if(data[i].tipPoslovnogPartneraDTO.naziv == 'kupac'){
         	        			divKupci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td></tr>');
         	        			ceoDivKup.append(divKupci);
         	        		}else if(data[i].tipPoslovnogPartneraDTO.naziv == 'kupacdobavljac'){
-        	        			divKupDob.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnik('+data[i].id+')\">Prikazi cenovnik</button></td></tr>');
+        	        			divKupDob.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziNarudzbenice('+data[i].id+')\">Prikazi narudzbenice</button></td></tr>');
         	        			ceoDivKupDob.append(divKupDob);
         	        		}
         	        	}

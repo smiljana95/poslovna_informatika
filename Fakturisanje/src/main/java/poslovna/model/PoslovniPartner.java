@@ -41,6 +41,30 @@ public class PoslovniPartner {
 	@OneToMany(mappedBy = "poslovniPartner", cascade = CascadeType.REMOVE)
     protected List<MagacinskaKartica> artikliNaLageru;
 	
+	@OneToMany(mappedBy = "poslovniPartner", cascade = CascadeType.REMOVE)
+    protected List<Narudzbenica> narudzbenice;
+	
+	@OneToMany(mappedBy = "poslovniPartner", cascade = CascadeType.REMOVE)
+    protected List<Faktura> fakture;
+	
+	
+	
+	public List<Narudzbenica> getNarudzbenice() {
+		return narudzbenice;
+	}
+
+	public void setNarudzbenice(List<Narudzbenica> narudzbenice) {
+		this.narudzbenice = narudzbenice;
+	}
+
+	public List<Faktura> getFakture() {
+		return fakture;
+	}
+
+	public void setFakture(List<Faktura> fakture) {
+		this.fakture = fakture;
+	}
+
 	private String adresa;
 	
 	private String kontaktTelefon;

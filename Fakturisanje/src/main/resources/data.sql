@@ -70,7 +70,51 @@ insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 4, 50);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (4, 5, 2);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 5, 4);
 
+insert into nacin_placanja (naziv_tipa_placanja) values ('racun');
+insert into nacin_placanja (naziv_tipa_placanja) values ('kartica');
+insert into nacin_placanja (naziv_tipa_placanja) values ('gotovina');
 
+insert into fiskalna_godina (broj_godine, aktivna, id_kompanije) values ('2018', true, 1);
+
+insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
+	('2016-11-29 21:00:00', 1, 23, 24, '123-123-123', '11', 123, false, 1, 1, 1, 1);
+
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 20, 0, 19, 2, 10, 22, 1, 1);
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 30, 0, 12, 2, 10, 22, 1, 2);
+	
+	
+insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
+	('2016-11-29 21:00:00', 2, 23, 24, '123-123-123', '11', 123, false, 1, 1, 1, 1);
+
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 20, 0, 19, 2, 10, 22, 2, 1);
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 30, 0, 12, 2, 10, 22, 2, 2);
+	
+insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
+	('2016-11-29 21:00:00', 3, 23, 24, '123-123-123', '11', 123, false, 1, 1, 1, 1);
+
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 20, 0, 19, 2, 10, 22, 3, 1);
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (3, 30, 0, 12, 2, 10, 22, 3, 2);
+	
+	
+	
 insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_grada, id_kompanije, role) values 
 	('tamara@gmail.com', 'Tamara', 'Perlinac', 'tamara', '12345', 'Vuka Karadzica 363', 1, 1, 'ADMIN');
 	

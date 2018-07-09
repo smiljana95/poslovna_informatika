@@ -26,8 +26,20 @@ public class StavkaUCenovniku {
 	
 	@Column(precision = 10, scale = 2)
 	private double cena;
+	
+	private int popust;
+	
+	
 
 	
+	public int getPopust() {
+		return popust;
+	}
+
+	public void setPopust(int popust) {
+		this.popust = popust;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -68,7 +80,7 @@ public class StavkaUCenovniku {
 	}
 
 	public StavkaUCenovniku() {
-		
+		this.popust = 0;
 	}
 	
 	
