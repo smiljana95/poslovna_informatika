@@ -23,11 +23,11 @@ public class MagacinskaKartica {
 	private int kolicna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_kompanije", nullable = false)
+    @JoinColumn(name = "id_kompanije")
     private Kompanija kompanija;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_poslovnog_partnera", nullable = false)
+    @JoinColumn(name = "id_poslovnog_partnera")
     private PoslovniPartner poslovniPartner;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

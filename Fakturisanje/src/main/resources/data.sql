@@ -22,8 +22,8 @@ insert into jedinica_mere (naziv, oznaka) values ('komad', 'kom');
 insert into jedinica_mere (naziv, oznaka) values ('kilogram', 'kg');
 insert into jedinica_mere (naziv, oznaka) values ('litar', 'l');
 
-insert into stopapdva (pdvu_procentima) values ('10%');
-insert into stopapdva (pdvu_procentima) values ('20%');
+insert into stopapdva (pdvu_procentima) values ('10');
+insert into stopapdva (pdvu_procentima) values ('20');
 
 insert into tippdva (naziv,id_stopepdva) values ('obican',2);
 insert into tippdva (naziv,id_stopepdva) values ('povlasceni',1);
@@ -40,7 +40,10 @@ insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Krompir', 'mladi krompir', 2,1);
 insert into artikal  (naziv, opis, id_jedinice_mere,id_grupe_artikala) values ('Paradajz', 'svez', 2,2);
 
-	
+insert into magacinska_kartica (kolicna, id_kompanije, id_poslovnog_partnera, id_artikla) values (50, 1, 1, 1);
+insert into magacinska_kartica (kolicna, id_kompanije, id_poslovnog_partnera, id_artikla) values (50, 1, 1, 2);
+insert into magacinska_kartica (kolicna, id_kompanije, id_poslovnog_partnera, id_artikla) values (50, 1, 1, 3);
+
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', null, 1, true);
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
@@ -52,23 +55,23 @@ insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
 	values ('2016-11-29 21:00:00', 1, null, false);
 
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (1, 1, 20);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (2, 1, 10);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 1, 50);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (1, 1, 20, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (2, 1, 10, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (3, 1, 50, 0);
 
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (4, 2, 2);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 2, 4);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (4, 2, 2, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (5, 2, 4, 0);
 
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (6, 3, 12);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (7, 3, 12);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (6, 3, 12, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (7, 3, 12, 0);
 
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (1, 4, 20);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (2, 4, 10);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (3, 4, 50);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (1, 4, 20, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (2, 4, 10, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (3, 4, 50, 0);
 
 
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (4, 5, 2);
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena) values (5, 5, 4);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (4, 5, 2, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (5, 5, 4, 0);
 
 insert into nacin_placanja (naziv_tipa_placanja) values ('racun');
 insert into nacin_placanja (naziv_tipa_placanja) values ('kartica');

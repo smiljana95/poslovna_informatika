@@ -44,7 +44,12 @@ public class StavkaUNarudzbeniciController {
 			method = RequestMethod.POST
 	)
 	public ResponseEntity<?> dodajStavku(@RequestBody String kolicina, @PathVariable Long idPP, @PathVariable Long idNarudzbenice, @PathVariable Long idArtikla, @PathVariable Long idCenovnika ) {
-		int kol = Integer.parseInt(kolicina);
+		int kol = 0;
+		try {
+			kol = Integer.parseInt(kolicina);
+		} catch (Exception e) {
+			return new ResponseEntity<>("Uneti broj za kolicinu.", HttpStatus.OK);
+		}
 		
 		StavkaUCenovniku stavkaUCenovniku = stavkaUCenovnikuService.findByArtikalIdAndCenovnikId(idArtikla,idCenovnika);
 		
@@ -59,21 +64,26 @@ public class StavkaUNarudzbeniciController {
 		Narudzbenica narudzbenica = narudzbenicaService.findById(idNarudzbenice);
 		if(narudzbenica!=null){
 			StavkaUNarudzbenici stavka = new StavkaUNarudzbenici();
-			stavka.setNarudzbenica(narudzbenica);
 			stavka.setJedinicnaCena(stavkaUCenovniku.getCena());
 			stavka.setPopust(stavkaUCenovniku.getPopust());
-			stavka.setOsnovica((kol * stavka.getJedinicnaCena())*((100.0 - stavka.getPopust()))/100.0);
+			stavka.setOsnovica(((kol * stavka.getJedinicnaCena())*(100.0 - stavka.getPopust()))/100.0);
 			int pdvUProcentima = Integer.parseInt(artikal.getGrupaArtikala().getTipPDVa().getStopaPDVa().getPDVuProcentima());
 			stavka.setIznosPDVa((stavka.getOsnovica() * (pdvUProcentima))/100.0);
 			stavka.setStopaPDVa(pdvUProcentima);
 			stavka.setJedinicnaCenaSaPDV(stavka.getOsnovica() + stavka.getIznosPDVa());
 			stavka.setArtikal(artikal);
 			stavka.setUkupnaKolicina(kol);
-			stavkaUNarudzbeniciService.save(stavka);
 			
+			narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavka.getOsnovica() * (pdvUProcentima))/100.0));
+			narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavka.getOsnovica());
+			narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavka.getJedinicnaCenaSaPDV());
+			
+			stavka.setNarudzbenica(narudzbenica);
+			stavkaUNarudzbeniciService.save(stavka);
+			narudzbenicaService.save(narudzbenica);
 		}
 				
-				return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
 	

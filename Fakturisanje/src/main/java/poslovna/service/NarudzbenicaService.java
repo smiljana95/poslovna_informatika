@@ -24,6 +24,8 @@ public class NarudzbenicaService {
 		return narudzbenicaRepository.findOne(idNarudzbenice);
 	}
 	
-	
+	public Narudzbenica save(Narudzbenica narudzbenica) {
+		return narudzbenicaRepository.save(narudzbenica);
+	}
 
 }
