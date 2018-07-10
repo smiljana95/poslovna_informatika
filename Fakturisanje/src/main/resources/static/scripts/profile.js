@@ -6,7 +6,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
         	if(data.role === "REGISTERED") {
-        		$("#tabProfileName").text(data.name);
+        		$("#tabProfileName").prepend(data.name);
         		$.ajax({
         			async: false,
         			url: "http://localhost:1234/poslovniPartner/getByKompanija/"+data.idKompanije,

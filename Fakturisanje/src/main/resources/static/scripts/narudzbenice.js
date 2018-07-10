@@ -24,3 +24,26 @@ function dodajStavkuUNarudzbenicu() {
         }
 	})
 }
+
+
+function logout() {
+    $.ajax({
+    	url: "http://localhost:1234/radnik/logout",
+        type: "POST",
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+         },
+        success: function () {
+                top.location.href = "index.html";
+
+        }, error: function (jqxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+
+function kreirajDirektnoNarudzbenicu() {
+	
+}

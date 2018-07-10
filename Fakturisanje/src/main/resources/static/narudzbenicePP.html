@@ -64,6 +64,7 @@ body, html {
 		
 		<script src="scripts/narudzbenicePP.js"></script>
 		<script src="scripts/narudzbenice.js"></script>
+		<script src="scripts/faktura.js"></script>
 		<script src="scripts/cenovnik.js"></script>
 		<link rel="shortcut icon" href="assets/ico/favicon.png">
 		
@@ -72,9 +73,33 @@ body, html {
 	</head>
 	
 	<body>
-	<div class="bg" style="padding:3%;">
+	<div class="bg" >
+	
+	
+	<ul class="nav nav-tabs" id="myTab">
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabProfileName" style="color: #cc0000" ><span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	            <li><a onclick="return logout()" style="color: #cc0000" data-toggle="tab">Logout</a></li>
+	        </ul>
+	    </li>
+	    
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	            
+	             <li><a onclick="return kreirajDirektnoFakturu()" style="color: #cc0000" data-toggle="tab">Fakturu</a></li>
+	            <li><a onclick="return kreirajDirektnoNarudzbenicu()" style="color: #cc0000" data-toggle="tab">Narudzbenicu</a></li>
+	        </ul>
+	    </li>
+	   
+	</ul>
+	
+	
 			
-	<div id="divSveNarudzbenice">
+	<div id="divSveNarudzbenice" style="padding-left:3%;">
 	</div>
 	</div>
 	

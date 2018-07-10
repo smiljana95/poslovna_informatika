@@ -7,6 +7,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
         	if(data.role === "REGISTERED") {
+        		$("#tabProfileName").prepend(data.name);
         		var url_string = window.location.href;
         		var url = new URL(url_string);
         		var idPP = url.searchParams.get("idPP");
