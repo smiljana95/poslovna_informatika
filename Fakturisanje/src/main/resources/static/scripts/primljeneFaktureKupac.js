@@ -17,7 +17,7 @@ $(document).ready(function () {
         	        type: "GET",
         	        dataType: "json",
         	        success: function (data) {
-        	        	var div = $('#divSveFakture');
+        	        	var div = $('#divSvePrimljeneFakture');
         	        	div.empty();
         	        	for(i=0; i<data.length; i++) {
         	        		div.append("<h1>#" + data[i].brojFakture + "</h1>")
@@ -70,7 +70,7 @@ $(document).ready(function () {
         	        		div.append("</table><br/><br/>");
         	        		div.append("<div id=\"divCenovnik" + data[i].id + "\"></div>")
         	        		//div.append("<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>")
-        	        		div.append("<button onclick=\"otpremiFakturu("+data[i].id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>")
+        	        		div.append("<button onclick=\"otpremiFakturu("+data[i].id+")\"  class=\"btn btn-default\">Otpremi fakturu</button>")
         	        		div.append("&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>")
         	        		div.append("<div class=\"okvir\"></div><br/><br/>")
         	        	}
@@ -93,3 +93,32 @@ $(document).ready(function () {
 	
 
 })
+
+
+function otpremiFakturu(idFakture){
+	$.ajax({
+		async: false,
+		url: "http://localhost:1234/otpremnica/kreirajOtpremnicu/"+idFakture,
+        type: "GET",
+        success: function (data) {
+        	top.location.href ="otpremnice.html";
+        },
+        error: function (jqxhr, textStatus, errorThrown) {
+        	toastr['error']('Nije moguce otpremiti fakturu');
+        } 
+	 });
+}
+
+function obrisiFakturu(idFakture){
+	$.ajax({
+		async: false,
+		url: "http://localhost:1234/faktura/obrisiFakturu/"+idFakture,
+        type: "DELETE",
+        success: function (data) {
+        	top.location.href = "fakture.html";
+        },
+        error: function (jqxhr, textStatus, errorThrown) {
+        	toastr['error']('Nije moguce obrisati fakturu');
+        } 
+        });
+}

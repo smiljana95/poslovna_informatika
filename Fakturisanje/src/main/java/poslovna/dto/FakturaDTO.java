@@ -24,6 +24,16 @@ public class FakturaDTO {
 	private FiskalnaGodinaDTO fiskalnaGodinaDTO;
 	private PoslovniPartnerDTO poslovniPartnerDTO;
 	private List<StavkaUFakturiDTO> stavkeUFakturiDTO;
+	private boolean otpremljena;
+	
+	
+	
+	public boolean isOtpremljena() {
+		return otpremljena;
+	}
+	public void setOtpremljena(boolean otpremljena) {
+		this.otpremljena = otpremljena;
+	}
 	public Long getId() {
 		return id;
 	}

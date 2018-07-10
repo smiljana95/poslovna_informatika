@@ -48,6 +48,7 @@ public class FakturaToFakturaDTOConverter implements Converter<Faktura, FakturaD
 		ret.setStavkeUFakturiDTO(stavkaConverter.convert(source.getStavke()));
 		ret.setUkupanPDV(source.getUkupanPDV());
 		ret.setUkupnaCena(source.getUkupnaCena());
+		ret.setOtpremljena(source.isOtpremljena());
 		ret.setUkupnaCenaBezPDVa(source.getUkupnaCenaBezPDVa());
 		return ret;
 	}

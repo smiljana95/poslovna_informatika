@@ -43,6 +43,7 @@ public class Faktura {
 	
 	private double ukupnaCena;
 	
+	private boolean otpremljena;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -179,6 +180,16 @@ public class Faktura {
 
 	public void setStavke(List<StavkaUFakturi> stavke) {
 		this.stavke = stavke;
+	}
+	
+	
+
+	public boolean isOtpremljena() {
+		return otpremljena;
+	}
+
+	public void setOtpremljena(boolean otpremljena) {
+		this.otpremljena = otpremljena;
 	}
 
 	public Faktura(Date datumFakture, int brojFakture, Date datumValute, double ukupanPDV, double ukupnaCenaBezPDVa,
