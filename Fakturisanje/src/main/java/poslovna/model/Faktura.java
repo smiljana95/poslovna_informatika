@@ -32,15 +32,15 @@ public class Faktura {
 	
 	private double ukupnaCenaBezPDVa;
 	
-	@Column(length = 30)
+	@Column(length = 30,nullable=true)
 	private String racunZaUplatu;
 	
-	@Column(length = 20)
+	@Column(length = 20,nullable=true)
 	private String pozivNaBroj;
 	
 	private double ukupnaCena;
 	
-	private boolean placena;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_nacina_placanja", nullable = false)
@@ -144,13 +144,7 @@ public class Faktura {
 		this.ukupnaCena = ukupnaCena;
 	}
 
-	public boolean isPlacena() {
-		return placena;
-	}
 
-	public void setPlacena(boolean placena) {
-		this.placena = placena;
-	}
 
 	public NacinPlacanja getNacinPlacanja() {
 		return nacinPlacanja;
@@ -185,7 +179,7 @@ public class Faktura {
 	}
 
 	public Faktura(Date datumFakture, int brojFakture, Date datumValute, double ukupanPDV, double ukupnaCenaBezPDVa,
-			String racunZaUplatu, String pozivNaBroj, double ukupnaCena, boolean placena, NacinPlacanja nacinPlacanja,
+			String racunZaUplatu, String pozivNaBroj, double ukupnaCena, NacinPlacanja nacinPlacanja,
 			FiskalnaGodina fiskalnaGodina, Kompanija kompanija, List<StavkaUFakturi> stavke) {
 		super();
 		this.datumFakture = datumFakture;
@@ -196,7 +190,7 @@ public class Faktura {
 		this.racunZaUplatu = racunZaUplatu;
 		this.pozivNaBroj = pozivNaBroj;
 		this.ukupnaCena = ukupnaCena;
-		this.placena = placena;
+		
 		this.nacinPlacanja = nacinPlacanja;
 		this.fiskalnaGodina = fiskalnaGodina;
 		this.kompanija = kompanija;
