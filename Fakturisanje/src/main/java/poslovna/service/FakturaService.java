@@ -14,8 +14,8 @@ public class FakturaService {
 	@Autowired
 	private FakturaRepository fakturaRepository;
 
-	public void save(Faktura faktura) {
-		fakturaRepository.save(faktura);
+	public Faktura save(Faktura faktura) {
+		return fakturaRepository.save(faktura);
 		
 	}
 

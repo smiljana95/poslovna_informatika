@@ -15,18 +15,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.shibboleth.utilities.java.support.security.DataSealerKeyStrategy;
 import poslovna.converter.FakturaToFakturaDTOConverter;
 import poslovna.dto.FakturaDTO;
+import poslovna.dto.NarucenaStavkaDTO;
+import poslovna.dto.NovaFakturaDTO;
+import poslovna.model.Artikal;
+import poslovna.model.Cenovnik;
 import poslovna.model.Faktura;
+import poslovna.model.NacinPlacanja;
 import poslovna.model.Narudzbenica;
+import poslovna.model.PoslovniPartner;
+import poslovna.model.Radnik;
+import poslovna.model.StavkaUCenovniku;
 import poslovna.model.StavkaUFakturi;
 import poslovna.model.StavkaUNarudzbenici;
+import poslovna.service.CenovnikService;
 import poslovna.service.FakturaService;
+import poslovna.service.FiskalnaGodinaService;
+import poslovna.service.NacinPlacanjaService;
 import poslovna.service.NarudzbenicaService;
+import poslovna.service.PoslovniPartnerService;
+import poslovna.service.RadnikService;
+import poslovna.service.StavkaUCenovnikuService;
 import poslovna.service.StavkaUFakturiService;
 
 @RestController
@@ -45,6 +61,20 @@ public class FakturaController {
 	@Autowired
 	private FakturaToFakturaDTOConverter fakturaToFakturaDTOConverter;
 	
+	@Autowired
+	private PoslovniPartnerService poslovniPartnerService;
+	
+	@Autowired
+	private NacinPlacanjaService nacinPlacanjaService;
+	
+	@Autowired
+	private StavkaUCenovnikuService stavkaUCenovnikuService;
+	
+	@Autowired
+	private RadnikService radnikService;
+	
+	@Autowired
+	private FiskalnaGodinaService fiskalnaGodinaService;
 	
 	@RequestMapping(
 			value = "/kreirajFakturuIzNarudzbenice/{idNarudzbenice}",
@@ -100,7 +130,7 @@ public class FakturaController {
 			stavkaUFakturi.setFaktura(faktura);
 			stavkaUFakturi.setIznosPDVa(stavkaUNarudzbenici.getIznosPDVa());
 			stavkaUFakturi.setJedinicnaCena(stavkaUNarudzbenici.getJedinicnaCena());
-			stavkaUFakturi.setJedinicnaCenaBezPDVa(stavkaUNarudzbenici.getJedinicnaCenaSaPDV());
+			stavkaUFakturi.setJedinicnaCenaSaPDVa(stavkaUNarudzbenici.getJedinicnaCenaSaPDV());
 			stavkaUFakturi.setOsnovica(stavkaUNarudzbenici.getOsnovica());
 			stavkaUFakturi.setPopust(stavkaUNarudzbenici.getPopust());
 			stavkaUFakturi.setStopaPDVa(stavkaUNarudzbenici.getStopaPDVa());
@@ -169,6 +199,82 @@ public class FakturaController {
 		List<FakturaDTO> fakturePrimljeneDTO = fakturaToFakturaDTOConverter.convert(fakturePrimljene);
 			return new ResponseEntity<>(fakturePrimljeneDTO,HttpStatus.OK);
 		
+	}
+	
+	@RequestMapping(
+			value = "/kreairajDirektno",
+			method = RequestMethod.POST
+	)
+	public ResponseEntity<?> kreairajDirektno(@RequestBody NovaFakturaDTO novaFakturaDTO) {
+		
+		if(novaFakturaDTO.getIdNacinaPlacanja() == null || novaFakturaDTO.getIdPartnera() == null) {
+			return new ResponseEntity<>("Popuniti sve podatke", HttpStatus.BAD_REQUEST);
+		}
+		
+		Radnik ulogovani = radnikService.getCurrentUser();
+		PoslovniPartner poslovniPartner = poslovniPartnerService.findById(novaFakturaDTO.getIdPartnera());
+		NacinPlacanja nacinPlacanja = nacinPlacanjaService.findOne(novaFakturaDTO.getIdNacinaPlacanja());
+		
+		if(poslovniPartner != null && nacinPlacanja != null && ulogovani != null) {
+			Faktura faktura = new Faktura();
+			faktura.setDatumFakture(new Date());
+			Calendar c = Calendar.getInstance();
+			c.add(Calendar.YEAR, 1);
+			faktura.setDatumValute(c.getTime());
+			faktura.setPoslovniPartner(poslovniPartner);
+			faktura.setOtpremljena(false);
+			faktura.setFiskalnaGodina(fiskalnaGodinaService.findByKompanijaAndAktivna(ulogovani.getKompanija().getId()));
+			faktura.setKompanija(ulogovani.getKompanija());
+			faktura.setNacinPlacanja(nacinPlacanja);
+			
+			if(nacinPlacanja.getNazivTipaPlacanja().equals("racun")){
+				faktura.setPozivNaBroj(poslovniPartner.getPozivNaBroj());
+				faktura.setRacunZaUplatu(poslovniPartner.getRacunZaUplatu());
+			}
+			
+			Faktura sacuvana = fakturaService.save(faktura);
+			
+			for(NarucenaStavkaDTO narucenaStavka : novaFakturaDTO.getStavke()) {
+				if(narucenaStavka.getValue() > 0) {
+					StavkaUCenovniku stavkaUCenovniku = stavkaUCenovnikuService.findById(narucenaStavka.getId());
+					Artikal artikal = stavkaUCenovniku.getArtikal();
+					StavkaUFakturi stavkaUFakturi = new StavkaUFakturi();
+					stavkaUFakturi.setFaktura(sacuvana);
+					stavkaUFakturi.setArtikal(artikal);
+					stavkaUFakturi.setJedinicnaCena(stavkaUCenovniku.getCena());
+					stavkaUFakturi.setPopust(stavkaUCenovniku.getPopust());
+					stavkaUFakturi.setOsnovica(((narucenaStavka.getValue() * stavkaUFakturi.getJedinicnaCena())*(100.0 - stavkaUFakturi.getPopust()))/100.0);
+					int pdvUProcentima = Integer.parseInt(artikal.getGrupaArtikala().getTipPDVa().getStopaPDVa().getPDVuProcentima());
+					stavkaUFakturi.setIznosPDVa((stavkaUFakturi.getOsnovica() * (pdvUProcentima))/100.0);
+					stavkaUFakturi.setStopaPDVa(pdvUProcentima);
+					stavkaUFakturi.setJedinicnaCenaSaPDVa(stavkaUFakturi.getOsnovica() + stavkaUFakturi.getIznosPDVa());
+					stavkaUFakturi.setUkupnaKolicina(narucenaStavka.getValue());
+					
+					StavkaUFakturi sacuvanaStavka = stavkaUFakturiService.save(stavkaUFakturi);
+					
+					sacuvana.getStavke().add(sacuvanaStavka);
+				}
+			}
+			
+			double ukupanPdv = 0.0;
+			double ukupnaCenaBezPdva = 0.0;
+			double ukupnaCena = 0.0;
+			
+			for(int i=0; i<sacuvana.getStavke().size(); i++){
+				ukupanPdv += sacuvana.getStavke().get(i).getIznosPDVa();
+				ukupnaCenaBezPdva += sacuvana.getStavke().get(i).getOsnovica();
+				ukupnaCena += sacuvana.getStavke().get(i).getJedinicnaCenaSaPDVa();
+			}
+			sacuvana.setUkupanPDV(ukupanPdv);
+			sacuvana.setUkupnaCenaBezPDVa(ukupnaCenaBezPdva);
+			sacuvana.setUkupnaCena(ukupnaCena);
+			sacuvana.setBrojFakture(sacuvana.getId().intValue());
+			
+			sacuvana = fakturaService.save(sacuvana);
+			return new ResponseEntity<>(fakturaToFakturaDTOConverter.convert(sacuvana), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
 }

@@ -139,11 +139,11 @@ insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun
 	values (1,'2016-11-29 21:00:00','2016-11-29 21:00:00','11','23-22-21212',100.0,100.0,100.0,1,1,1,3,false);
 
 insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_bezpdva, id_fakture, id_artikla)
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
 	values (3, 30, 0, 12, 2, 10, 22, 1, 2);	
 	
-	insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_bezpdva, id_fakture, id_artikla)
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
 	values (3, 30, 0, 12, 2, 10, 22, 1, 1);	
 	
 	

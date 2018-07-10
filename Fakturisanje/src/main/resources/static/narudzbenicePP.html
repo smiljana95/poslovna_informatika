@@ -32,6 +32,11 @@ body, html {
     margin: 0;
 }
 
+a{
+	cursor: pointer;
+}
+
+
 .bg {
     /* The image used */
     background-image: url("bubbles.jpg");
@@ -74,7 +79,7 @@ body, html {
 	    <li class="dropdown">
 	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabProfileName" style="color: #cc0000" ><span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	            <li><a onclick="return logout()" style="color: #cc0000" data-toggle="tab">Logout</a></li>
+	            <li><a onclick="return logout()" style="color: #cc0000">Logout</a></li>
 	        </ul>
 	    </li>
 	    
@@ -82,9 +87,13 @@ body, html {
 	    <li class="dropdown">
 	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a onclick="return kreirajDirektnoNarudzbenicuShowModal()" style="color: #cc0000" data-toggle="tab">Narudzbenicu</a></li>
+	          <li><a onclick="return kreirajDirektnoNarudzbenicuShowModal()" style="color: #cc0000">Narudzbenicu</a></li>
 	        </ul>
 	    </li>
+	    
+	    <li><a href="fakture.html" style="color: #cc0000">Fakture</a></li>
+	    
+	    <li><a href="home.html" style="color: #cc0000">Home</a></li>
 	   
 	</ul>
 	

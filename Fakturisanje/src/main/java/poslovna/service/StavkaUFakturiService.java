@@ -12,8 +12,8 @@ public class StavkaUFakturiService {
 	@Autowired
 	private StavkaUFakturiRepository stavkaUFakturiRepository;
 
-	public void save(StavkaUFakturi stavkaUFakturi) {
-		stavkaUFakturiRepository.save(stavkaUFakturi);
+	public StavkaUFakturi save(StavkaUFakturi stavkaUFakturi) {
+		return stavkaUFakturiRepository.save(stavkaUFakturi);
 	}
 	
 

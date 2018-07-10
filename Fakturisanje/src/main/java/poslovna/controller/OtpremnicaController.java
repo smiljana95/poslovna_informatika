@@ -1,6 +1,7 @@
 package poslovna.controller;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import poslovna.converter.OtpremnicaToOtpremnicaDTOConverter;
-import poslovna.dto.FakturaDTO;
 import poslovna.dto.OtpremnicaDTO;
 import poslovna.model.Faktura;
 import poslovna.model.Otpremnica;
@@ -67,7 +67,7 @@ public class OtpremnicaController {
 		
 		Otpremnica otpremnica = new Otpremnica();
 		
-		otpremnica.setDatumOtpremnice(faktura.getDatumFakture());
+		otpremnica.setDatumOtpremnice(new Date());
 		
 		 
 		
@@ -96,7 +96,7 @@ public class OtpremnicaController {
 			stavkaUOtpremnici.setOtpremnica(otpremnica);
 			stavkaUOtpremnici.setIznosPDVa(stavkaUFakturi.getIznosPDVa());
 			stavkaUOtpremnici.setJedinicnaCena(stavkaUFakturi.getJedinicnaCena());
-			stavkaUOtpremnici.setJedinicnaCenaBezPDVa(stavkaUFakturi.getJedinicnaCenaBezPDVa());
+			stavkaUOtpremnici.setJedinicnaCenaBezPDVa(stavkaUFakturi.getJedinicnaCenaSaPDVa());
 			stavkaUOtpremnici.setOsnovica(stavkaUFakturi.getOsnovica());
 			stavkaUOtpremnici.setPopust(stavkaUFakturi.getPopust());
 			stavkaUOtpremnici.setStopaPDVa(stavkaUFakturi.getStopaPDVa());

@@ -29,7 +29,7 @@ public class StavkaUFakturiToStavkaUFakturiDTOConverter implements Converter<Sta
 		ret.setId(source.getId());
 		ret.setIznosPDVa(source.getIznosPDVa());
 		ret.setJedinicnaCena(source.getJedinicnaCena());
-		ret.setJedinicnaCenaSaPDV(source.getJedinicnaCenaBezPDVa());
+		ret.setJedinicnaCenaSaPDV(source.getJedinicnaCenaSaPDVa());
 		ret.setOsnovica(source.getOsnovica());
 		ret.setPopust(source.getPopust());
 		ret.setStopaPDVa(source.getStopaPDVa());

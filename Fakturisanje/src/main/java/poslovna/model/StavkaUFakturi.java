@@ -27,7 +27,7 @@ public class StavkaUFakturi {
 	
 	private double stopaPDVa; //npr 10%
 	
-	private double jedinicnaCenaBezPDVa;
+	private double jedinicnaCenaSaPDVa;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_fakture", nullable = false)
@@ -38,7 +38,7 @@ public class StavkaUFakturi {
     private Artikal artikal;
 	
 	public StavkaUFakturi(Long id, int ukupnaKolicina, double jedinicnaCena, double popust, double osnovica,
-			double iznosPDVa, double stopaPDVa, double jedinicnaCenaBezPDVa, Faktura faktura, Artikal artikal) {
+			double iznosPDVa, double stopaPDVa, double jedinicnaCenaSaPDVa, Faktura faktura, Artikal artikal) {
 		this.id = id;
 		this.ukupnaKolicina = ukupnaKolicina;
 		this.jedinicnaCena = jedinicnaCena;
@@ -46,7 +46,7 @@ public class StavkaUFakturi {
 		this.osnovica = osnovica;
 		this.iznosPDVa = iznosPDVa;
 		this.stopaPDVa = stopaPDVa;
-		this.jedinicnaCenaBezPDVa = jedinicnaCenaBezPDVa;
+		this.jedinicnaCenaSaPDVa = jedinicnaCenaSaPDVa;
 		this.faktura = faktura;
 		this.artikal = artikal;
 	}
@@ -125,12 +125,12 @@ public class StavkaUFakturi {
 		this.jedinicnaCena = jedinicnaCena;
 	}
 
-	public double getJedinicnaCenaBezPDVa() {
-		return jedinicnaCenaBezPDVa;
+	public double getJedinicnaCenaSaPDVa() {
+		return jedinicnaCenaSaPDVa;
 	}
 
-	public void setJedinicnaCenaBezPDVa(double jedinicnaCenaBezPDVa) {
-		this.jedinicnaCenaBezPDVa = jedinicnaCenaBezPDVa;
+	public void setJedinicnaCenaSaPDVa(double jedinicnaCenaSaPDVa) {
+		this.jedinicnaCenaSaPDVa = jedinicnaCenaSaPDVa;
 	}
 
 	
