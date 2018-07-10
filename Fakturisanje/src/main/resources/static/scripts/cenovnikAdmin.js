@@ -80,6 +80,11 @@ function potvrdiDodavanjeStavke(idCenovnika) {
 	$('#modalNovaStavka').modal('toggle');
 	$("#cenovnikAdminTable").find("tr:gt(0)").remove();
 	var stavkaZaDodavanje = new Object();
+	var cena = document.getElementById("cenaNoveStavke").value;
+	if(cena.trim()=="" || isNaN(cena)){
+		toastr["error"]("Unesite ispravnu brojcanu vrednost za cenu stavke.");
+		return;
+	}
 	stavkaZaDodavanje.cena = document.getElementById("cenaNoveStavke").value;
 	stavkaZaDodavanje.id = $("#odaberiArtikalSelect").find(':selected').attr('id');
 	stavkaZaDodavanje.idCenovnika = idCenovnika;
