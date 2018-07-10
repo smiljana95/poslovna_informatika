@@ -1,10 +1,15 @@
 package poslovna.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import poslovna.converter.FakturaToFakturaDTOConverter;
+import poslovna.dto.FakturaDTO;
 import poslovna.model.Faktura;
 import poslovna.model.Narudzbenica;
 import poslovna.model.StavkaUFakturi;
@@ -126,5 +132,42 @@ public class FakturaController {
 	}
 	
 	
+	
+	@RequestMapping(
+			value = "/eksportujFakturu/{idFakture}",
+			method = RequestMethod.GET
+	)
+	public ResponseEntity<?> eksportujFakturu(@PathVariable Long idFakture) {
+		Faktura toEksport = fakturaService.findById(idFakture);
+		FakturaDTO toEksportDTO = fakturaToFakturaDTOConverter.convert(toEksport);
+		File file = new File("fileFaktura"+idFakture+".xml");
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(FakturaDTO.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+			jaxbMarshaller.marshal(toEksportDTO, file);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(
+			value = "/getPrimljeneFakture/{idFakture}",
+			method = RequestMethod.DELETE
+	)
+	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idFakture) {
+		//List<Faktura> fakturePrimljene = fakturaService.
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
 
 }
