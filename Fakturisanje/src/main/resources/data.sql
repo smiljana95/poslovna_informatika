@@ -9,14 +9,20 @@ insert into Grad (ptt, naziv) values (21000, 'Novi Sad');
 insert into Kompanija (naziv, pid, kontakt, adresa, broj_racuna, id_grada) values 
 	('Erste Bank', 101626723, '0800201201', 'Bulevar Oslobodjenja 5', '11-1111-111', 1);
 
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,1,'Dobavljac1',1,'Bulevar Oslobodjenja 5','857156');	
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,1,'Dobavljac2',1,'Bulevar Oslobodjenja 5','842588');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,1,'Dobavljac1',1,'Bulevar Oslobodjenja 5','857156', '12', '121-121-121');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,1,'Dobavljac2',1,'Bulevar Oslobodjenja 5','842588', '12', '121-121-121');	
 
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,2,'Kupac1',1,'Bulevar Oslobodjenja 5','11111222');	
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,2,'Kupac2',1,'Bulevar Oslobodjenja 5','857584222222');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,2,'Kupac1',1,'Bulevar Oslobodjenja 5','11111222', '12', '121-121-121');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,2,'Kupac2',1,'Bulevar Oslobodjenja 5','857584222222', '12', '121-121-121');	
 
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,3,'DobavljacKupac1',1,'Bulevar Oslobodjenja 5','0000258');	
-insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon) values (1,3,'DobavljacKupac2',1,'Bulevar Oslobodjenja 5','8585858');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,3,'DobavljacKupac1',1,'Bulevar Oslobodjenja 5','0000258', '12', '121-121-121');	
+insert into Poslovni_partner(id_kompanija, id_tipa, naziv,id_grada,adresa,kontakt_telefon, poziv_na_broj, racun_za_uplatu) 
+	values (1,3,'DobavljacKupac2',1,'Bulevar Oslobodjenja 5','8585858', '12', '121-121-121');	
 
 insert into jedinica_mere (naziv, oznaka) values ('komad', 'kom');
 insert into jedinica_mere (naziv, oznaka) values ('kilogram', 'kg');
