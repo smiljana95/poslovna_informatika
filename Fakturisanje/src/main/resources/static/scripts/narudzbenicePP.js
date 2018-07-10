@@ -73,7 +73,7 @@ $(document).ready(function () {
 	        	        		str += "<div id=\"divCenovnik" + data[i].id + "\"></div>";
 	        	        		str += "<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>";
 	        	        		str += "&nbsp&nbsp&nbsp<button onclick=\"kreirajFakturuIzNarudzbenice(" + data[i].id + ")\" class=\"btn btn-default\">Kreiraj fakturu</button>";
-	        	        		str += "&nbsp&nbsp&nbsp<button class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
+	        	        		str += "&nbsp&nbsp&nbsp<button onclick=\"obrisiNarudzbenicu(" + data[i].id + ")\" class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
 	        	        		str += "<div class=\"okvir\"></div><br/><br/>";
 	        	        	}
         	        	}

@@ -27,5 +27,9 @@ public class NarudzbenicaService {
 	public Narudzbenica save(Narudzbenica narudzbenica) {
 		return narudzbenicaRepository.save(narudzbenica);
 	}
+	
+	public void delete(Long id) {
+		narudzbenicaRepository.delete(id);
+	}
 
 }

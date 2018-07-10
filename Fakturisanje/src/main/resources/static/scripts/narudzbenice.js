@@ -161,8 +161,8 @@ function kreirajDirektnoNarudzbenicu() {
     		str += "</table><br/><br/>";
     		str += "<div id=\"divCenovnik" + data.id + "\"></div>";
     		str += "<button onclick=\"prikaziCenovnik(" + data.poslovniPartnerDTO.id + "," + data.id + ")\" class=\"btn btn-success\">Dodaj stavku</button>";
-    		str += "&nbsp&nbsp&nbsp<button class=\"btn btn-default\">Kreiraj fakturu</button>";
-    		str += "&nbsp&nbsp&nbsp<button class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
+    		str += "&nbsp&nbsp&nbsp<button onclick=\"kreirajFakturuIzNarudzbenice(" + data.id + ")\" class=\"btn btn-default\">Kreiraj fakturu</button>";
+    		str += "&nbsp&nbsp&nbsp<button onclick=\"obrisiNarudzbenicu(" + data.id + ")\" class=\"btn btn-danger\" class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
     		str += "<div class=\"okvir\"></div><br/><br/>";
         	
         	
@@ -176,4 +176,20 @@ function kreirajDirektnoNarudzbenicu() {
         }
     });
 	
+}
+
+function obrisiNarudzbenicu(idNarudzbenice) {
+	$.ajax({
+    	url: "http://localhost:1234/narudzbenica/delete/" + idNarudzbenice,
+        type: "DELETE",
+        success: function () {
+        	var url_string = window.location.href;
+        	var url = new URL(url_string);
+        	var idPP = url.searchParams.get("idPP");
+        	top.location.href = "narudzbenicePP.html?idPP="+idPP;
+
+        }, error: function (jqxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
 }

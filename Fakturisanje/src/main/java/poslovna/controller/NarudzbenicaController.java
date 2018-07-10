@@ -94,4 +94,14 @@ public class NarudzbenicaController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
+	
+	@RequestMapping(
+			value = "/delete/{idNarudzbenice}",
+			method = RequestMethod.DELETE
+	)
+	public ResponseEntity<?> delete(@PathVariable Long idNarudzbenice) {
+		narudzbenicaService.delete(idNarudzbenice);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 }

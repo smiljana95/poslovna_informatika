@@ -9,5 +9,7 @@ import poslovna.model.PoslovniPartner;
 public interface PoslovniPartnerRepository extends JpaRepository<PoslovniPartner, Long> {
 	
 	List<PoslovniPartner> findByKompanijaId(Long idKompanije);
+	
+	List<PoslovniPartner> findByKompanijaIdAndTipPoslovnogPartneraNaziv(Long idKompanije, String tip);
 
 }

@@ -21,5 +21,9 @@ public class PoslovniPartnerService {
 	public PoslovniPartner findById(Long id) {
 		return poslovniPartnerRepository.findOne(id);
 	}
+	
+	public List<PoslovniPartner> findByKompanijaAndTip(Long idKompanije, String tip) {
+		return poslovniPartnerRepository.findByKompanijaIdAndTipPoslovnogPartneraNaziv(idKompanije, tip);
+	}
 
 }
