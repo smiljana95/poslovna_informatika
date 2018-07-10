@@ -162,11 +162,12 @@ public class FakturaController {
 	
 	@RequestMapping(
 			value = "/getPrimljeneFakture/{idFakture}",
-			method = RequestMethod.DELETE
+			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idFakture) {
-		//List<Faktura> fakturePrimljene = fakturaService.
-			return new ResponseEntity<>(HttpStatus.OK);
+		List<Faktura> fakturePrimljene = fakturaService.findByOtpremljena(false);
+		List<FakturaDTO> fakturePrimljeneDTO = fakturaToFakturaDTOConverter.convert(fakturePrimljene);
+			return new ResponseEntity<>(fakturePrimljeneDTO,HttpStatus.OK);
 		
 	}
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<style>
+table {
+    font-family: arial, sans-serif;
+  
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+h4{
+	margin-left:21.5%;
+	color:white;
+}
+tr:nth-child(even) {
+    background-color: white;
+}
+tr:nth-child(odd) {
+    background-color: #003366;
+    color:white;
+    
+}
+.TextBox > div {
+    margin:0 auto;
+    width:250px;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("bubbles.jpg");
+
+    /* Full height */
+
+    /* Center and scale the image nicely */
+    background-repeat: repeat-y;
+    background-size: 100% 100%;
+    
+}
+
+.stavkaTabele{
+	background-color: white;
+}
+
+.okvir{
+	border: 4px solid black;
+}
+</style>
+	<head>
+		<meta charset="UTF-8">
+		<title>Projekat</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+		<script src="scripts/otpremnice.js"></script>
+		
+		<link rel="shortcut icon" href="assets/ico/favicon.png">
+		
+		<script src="toastr/toastr.min.js"></script>
+    	<link href="toastr/toastr.min.css" rel="stylesheet"/>
+	</head>
+	
+	<body>
+	<div class="bg" >
+	
+	
+	<ul class="nav nav-tabs" id="myTab">
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabProfileName" style="color: #cc0000" ><span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	            <li><a onclick="return logout()" style="color: #cc0000" data-toggle="tab">Logout</a></li>
+	        </ul>
+	    </li>
+	    
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	            
+	             <li><a onclick="return kreirajDirektnoFakturu()" style="color: #cc0000" data-toggle="tab">Fakturu</a></li>
+	            <li><a onclick="return kreirajDirektnoNarudzbenicu()" style="color: #cc0000" data-toggle="tab">Narudzbenicu</a></li>
+	        </ul>
+	    </li>
+	   
+	</ul>
+	
+	
+			
+	<div id="divSveOtpremnice" style="padding-left:3%;">
+	</div>
+	</div>
+	
+	
+	
+	
+	</body>
+	
+	</html>
