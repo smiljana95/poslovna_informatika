@@ -15,5 +15,9 @@ public class StavkaUNarudzbeniciService {
 	public StavkaUNarudzbenici save(StavkaUNarudzbenici stavka) {
 		return stavkaUNarudzbeniciRepository.save(stavka);
 	}
+	
+	public StavkaUNarudzbenici fincByArtikalAndNarudzbenica(Long idArtikla, Long idNarudzbenice) {
+		return stavkaUNarudzbeniciRepository.findByNarudzbenicaIdAndArtikalId(idNarudzbenice, idArtikla);
+	}
 
 }

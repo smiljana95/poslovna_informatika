@@ -48,13 +48,20 @@ public class StavkaUNarudzbeniciController {
 		try {
 			kol = Integer.parseInt(kolicina);
 		} catch (Exception e) {
-			return new ResponseEntity<>("Uneti broj za kolicinu.", HttpStatus.OK);
+			return new ResponseEntity<>("Uneti broj za kolicinu.", HttpStatus.BAD_REQUEST);
+		}
+		
+		if(kol < 0) {
+			return new ResponseEntity<>("Kolicina mora biti pozitivan broj.", HttpStatus.BAD_REQUEST);
 		}
 		
 		StavkaUCenovniku stavkaUCenovniku = stavkaUCenovnikuService.findByArtikalIdAndCenovnikId(idArtikla,idCenovnika);
 		
 		
 		MagacinskaKartica magacinskaKartica = magacinskaKarticaService.findByArtikalIdAndPoslovniPartnerId(idArtikla,idPP);
+		if(magacinskaKartica == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		if(magacinskaKartica.getKolicna() - kol >= 0){
 			magacinskaKartica.setKolicna(magacinskaKartica.getKolicna()-kol);
 		}else{
@@ -62,25 +69,47 @@ public class StavkaUNarudzbeniciController {
 		}
 		Artikal artikal = artikalService.findById(idArtikla);
 		Narudzbenica narudzbenica = narudzbenicaService.findById(idNarudzbenice);
-		if(narudzbenica!=null){
-			StavkaUNarudzbenici stavka = new StavkaUNarudzbenici();
-			stavka.setJedinicnaCena(stavkaUCenovniku.getCena());
-			stavka.setPopust(stavkaUCenovniku.getPopust());
-			stavka.setOsnovica(((kol * stavka.getJedinicnaCena())*(100.0 - stavka.getPopust()))/100.0);
-			int pdvUProcentima = Integer.parseInt(artikal.getGrupaArtikala().getTipPDVa().getStopaPDVa().getPDVuProcentima());
-			stavka.setIznosPDVa((stavka.getOsnovica() * (pdvUProcentima))/100.0);
-			stavka.setStopaPDVa(pdvUProcentima);
-			stavka.setJedinicnaCenaSaPDV(stavka.getOsnovica() + stavka.getIznosPDVa());
-			stavka.setArtikal(artikal);
-			stavka.setUkupnaKolicina(kol);
+		if(narudzbenica!=null && artikal != null){
+			StavkaUNarudzbenici stavkaPronadjena = stavkaUNarudzbeniciService.fincByArtikalAndNarudzbenica(idArtikla, idNarudzbenice);
 			
-			narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavka.getOsnovica() * (pdvUProcentima))/100.0));
-			narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavka.getOsnovica());
-			narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavka.getJedinicnaCenaSaPDV());
-			
-			stavka.setNarudzbenica(narudzbenica);
-			stavkaUNarudzbeniciService.save(stavka);
-			narudzbenicaService.save(narudzbenica);
+			if(stavkaPronadjena == null) {
+				StavkaUNarudzbenici stavka = new StavkaUNarudzbenici();
+				stavka.setJedinicnaCena(stavkaUCenovniku.getCena());
+				stavka.setPopust(stavkaUCenovniku.getPopust());
+				stavka.setOsnovica(((kol * stavka.getJedinicnaCena())*(100.0 - stavka.getPopust()))/100.0);
+				int pdvUProcentima = Integer.parseInt(artikal.getGrupaArtikala().getTipPDVa().getStopaPDVa().getPDVuProcentima());
+				stavka.setIznosPDVa((stavka.getOsnovica() * (pdvUProcentima))/100.0);
+				stavka.setStopaPDVa(pdvUProcentima);
+				stavka.setJedinicnaCenaSaPDV(stavka.getOsnovica() + stavka.getIznosPDVa());
+				stavka.setArtikal(artikal);
+				stavka.setUkupnaKolicina(kol);
+				
+				narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavka.getOsnovica() * (pdvUProcentima))/100.0));
+				narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavka.getOsnovica());
+				narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavka.getJedinicnaCenaSaPDV());
+				
+				stavka.setNarudzbenica(narudzbenica);
+				stavkaUNarudzbeniciService.save(stavka);
+				narudzbenicaService.save(narudzbenica);
+			} else {
+				stavkaPronadjena.setJedinicnaCena(stavkaUCenovniku.getCena());
+				stavkaPronadjena.setPopust(stavkaUCenovniku.getPopust());
+				stavkaPronadjena.setOsnovica(((kol * stavkaPronadjena.getJedinicnaCena())*(100.0 - stavkaPronadjena.getPopust()))/100.0);
+				int pdvUProcentima = Integer.parseInt(artikal.getGrupaArtikala().getTipPDVa().getStopaPDVa().getPDVuProcentima());
+				stavkaPronadjena.setIznosPDVa((stavkaPronadjena.getOsnovica() * (pdvUProcentima))/100.0);
+				stavkaPronadjena.setStopaPDVa(pdvUProcentima);
+				stavkaPronadjena.setJedinicnaCenaSaPDV(stavkaPronadjena.getOsnovica() + stavkaPronadjena.getIznosPDVa());
+				stavkaPronadjena.setArtikal(artikal);
+				stavkaPronadjena.setUkupnaKolicina(kol);
+				
+				narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavkaPronadjena.getOsnovica() * (pdvUProcentima))/100.0));
+				narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavkaPronadjena.getOsnovica());
+				narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavkaPronadjena.getJedinicnaCenaSaPDV());
+				
+				stavkaPronadjena.setNarudzbenica(narudzbenica);
+				stavkaUNarudzbeniciService.save(stavkaPronadjena);
+				narudzbenicaService.save(narudzbenica);
+			}
 		}
 				
 		return new ResponseEntity<>(HttpStatus.OK);
