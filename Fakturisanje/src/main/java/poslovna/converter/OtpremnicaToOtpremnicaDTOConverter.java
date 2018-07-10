@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import poslovna.dto.FakturaDTO;
-import poslovna.dto.NarudzbenicaDTO;
-import poslovna.model.Faktura;
-import poslovna.model.Narudzbenica;
+import poslovna.dto.OtpremnicaDTO;
+
+import poslovna.model.Otpremnica;
 
 @Component
-public class FakturaToFakturaDTOConverter implements Converter<Faktura, FakturaDTO>{
-	
+public class OtpremnicaToOtpremnicaDTOConverter implements Converter<Otpremnica, OtpremnicaDTO> {
+
 	@Autowired
 	private FiskalnaGodinaToFiskalnaGodinaDTOConverter fiskalnaGodinaConverter;
 	
@@ -27,17 +26,17 @@ public class FakturaToFakturaDTOConverter implements Converter<Faktura, FakturaD
 	private PoslovniPartnerToPoslovniPartnerDTOConverter poslovniPartnerConverter;
 	
 	@Autowired
-	private StavkaUFakturiToStavkaUFakturiDTOConverter stavkaConverter;
-
+	private StavkaUOtpremniciToStavkaUOtpremniciDTOConverter stavkaConverter;
+	
 	@Override
-	public FakturaDTO convert(Faktura source) {
+	public OtpremnicaDTO convert(Otpremnica source) {
 		if(source == null) {
 			return null;
 		}
-		FakturaDTO ret = new FakturaDTO();
-		ret.setBrojFakture(source.getBrojFakture());
+		OtpremnicaDTO ret = new OtpremnicaDTO();
+		ret.setBrojOtpremnice(source.getBrojOtpremnice());
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		ret.setDatumFakture(df.format(source.getDatumFakture()));
+		ret.setDatumOtpremnice((df.format(source.getDatumOtpremnice())));
 		ret.setFiskalnaGodinaDTO(fiskalnaGodinaConverter.convert(source.getFiskalnaGodina()));
 		ret.setId(source.getId());
 		ret.setNacinPlacanjaDTO(nacinPlacanjaConverter.convert(source.getNacinPlacanja()));
@@ -45,17 +44,17 @@ public class FakturaToFakturaDTOConverter implements Converter<Faktura, FakturaD
 		ret.setPoslovniPartnerDTO(poslovniPartnerConverter.convert(source.getPoslovniPartner()));
 		ret.setPozivNaBroj(source.getPozivNaBroj());
 		ret.setRacunZaUplatu(source.getRacunZaUplatu());
-		ret.setStavkeUFakturiDTO(stavkaConverter.convert(source.getStavke()));
+		ret.setStavkeUOtpremniciDTO(stavkaConverter.convert(source.getStavke()));
 		ret.setUkupanPDV(source.getUkupanPDV());
 		ret.setUkupnaCena(source.getUkupnaCena());
-		ret.setOtpremljena(source.isOtpremljena());
+		
 		ret.setUkupnaCenaBezPDVa(source.getUkupnaCenaBezPDVa());
 		return ret;
 	}
 	
-	public List<FakturaDTO> convert(List<Faktura> source) {
-		List<FakturaDTO> ret = new ArrayList<FakturaDTO>();
-		for(Faktura grad : source) {
+	public List<OtpremnicaDTO> convert(List<Otpremnica> source) {
+		List<OtpremnicaDTO> ret = new ArrayList<OtpremnicaDTO>();
+		for(Otpremnica grad : source) {
 			ret.add(convert(grad));
 		}
 		return ret;

@@ -11,17 +11,17 @@ $(document).ready(function () {
         		
         		$.ajax({
         			async: false,
-        			url: "http://localhost:1234/faktura/getAllFakture",
+        			url: "http://localhost:1234/otpremnica/getAllOtpremnice",
         	        type: "GET",
         	        dataType: "json",
         	        success: function (data) {
-        	        	var div = $('#divSveFakture');
+        	        	var div = $('#divSveOtpremnice');
         	        	div.empty();
         	        	for(i=0; i<data.length; i++) {
-        	        		div.append("<h1>#" + data[i].brojFakture + "</h1>")
+        	        		div.append("<h1>#" + data[i].brojOtpremnice + "</h1>")
         	        		div.append("<table width=\"200\">");
-        	        		div.append("<tr><td>Broj fakture</td><td>" + data[i].brojFakture + "</td></tr>")
-        	        		div.append("<tr><td>Datum fakture</td><td>" + data[i].datumFakture + "</td></tr>")
+        	        		div.append("<tr><td>Broj otpremnice</td><td>" + data[i].brojOtpremnice + "</td></tr>")
+        	        		div.append("<tr><td>Datum otpremnice</td><td>" + data[i].datumOtpremnice + "</td></tr>")
         	        		div.append("<tr><td>Ukupan PDV</td><td>" + data[i].ukupanPDV + "</td></tr>")
         	        		div.append("<tr><td>Ukupna cena bez PDV-a</td><td>" + data[i].ukupnaCenaBezPDVa + "</td></tr>")
         	        		div.append("<tr><td>Ukupna cena</td><td>" + data[i].ukupnaCena + "</td></tr>")
@@ -49,27 +49,27 @@ $(document).ready(function () {
         	        		div.append("<th class=\"stavkaTabele\">Iznos PDV-a</th>")
         	        		div.append("<th class=\"stavkaTabele\">Stopa PDV-a</th>")
         	        		div.append("<th class=\"stavkaTabele\">Jedinicna cena sa PDV-om</th>")
-        	        		for(j=0; j<data[i].stavkeUFakturiDTO.length; j++) {
+        	        		for(j=0; j<data[i].stavkeUOtpremniciDTO.length; j++) {
         	        			div.append("<tr>")
         	        			
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.naziv + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.opis + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].ukupnaKolicina + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.jedinicaMereDTO.oznaka + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].jedinicnaCena + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].popust + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].osnovica + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].iznosPDVa + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].stopaPDVa + "</td>")
-        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].jedinicnaCenaSaPDV + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].artikalDTO.naziv + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].artikalDTO.opis + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].ukupnaKolicina + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].artikalDTO.jedinicaMereDTO.oznaka + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].jedinicnaCena + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].popust + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].osnovica + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].iznosPDVa + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].stopaPDVa + "</td>")
+        	        			div.append("<td class=\"stavkaTabele\">" + data[i].stavkeUOtpremniciDTO[j].jedinicnaCenaSaPDV + "</td>")
         	        			
         	        			div.append("</tr>")
         	        		}
         	        		div.append("</table><br/><br/>");
         	        		div.append("<div id=\"divCenovnik" + data[i].id + "\"></div>")
         	        		//div.append("<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>")
-        	        		div.append("<button onclick=\"eksportujFakturu("+data[i].id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>")
-        	        		div.append("&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>")
+        	        		div.append("<button onclick=\"eksportujOtpremnicu("+data[i].id+")\"  class=\"btn btn-default\">Eksportuj otpremnicu</button>")
+        	        		div.append("&nbsp&nbsp&nbsp<button onclick=\"obrisiOtpremnicu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi otpremnicu</button>")
         	        		div.append("<div class=\"okvir\"></div><br/><br/>")
         	        	}
         	        },
@@ -92,16 +92,16 @@ $(document).ready(function () {
 
 })
 
-function obrisiFakturu(idFakture){
+function obrisiOtpremnicu(idOtpremnice){
 	$.ajax({
 		async: false,
-		url: "http://localhost:1234/faktura/obrisiFakturu/"+idFakture,
+		url: "http://localhost:1234/otpremnica/obrisiOtpremnicu/"+idOtpremnice,
         type: "DELETE",
         success: function (data) {
-        	top.location.href = "fakture.html";
+        	top.location.href = "otpremnice.html";
         },
         error: function (jqxhr, textStatus, errorThrown) {
-        	toastr['error']('Nije moguce obrisati fakturu');
+        	toastr['error']('Nije moguce obrisati otpremnicu');
         } 
         });
 }
@@ -124,9 +124,9 @@ function logout() {
 }
 
 
-function eksportujFakturu(idFakture){
+function eksportujOtpremnicu(idOtpremnice){
 	$.ajax({
-    	url: "http://localhost:1234/faktura/eksportujFakturu/"+idFakture,
+    	url: "http://localhost:1234/otpremnica/eksportujOtpremnicu/"+idOtpremnice,
         type: "GET",
         crossDomain: true,
         xhrFields: {

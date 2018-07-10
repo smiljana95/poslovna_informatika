@@ -14,20 +14,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import poslovna.dto.StavkaUOtpremniciDTO;
 
 @Entity
-public class Faktura {
+public class Otpremnica {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Date datumFakture; //datum kad je faktura kreirana
+	private Date datumOtpremnice; //datum kad je faktura kreirana
 	
-	private int brojFakture;
+	private int brojOtpremnice;
 	
 	private Date datumValute; //datum do kad mora da se plati
 	
@@ -43,8 +42,6 @@ public class Faktura {
 	
 	private double ukupnaCena;
 	
-	private boolean otpremljena;
-	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_nacina_placanja", nullable = false)
@@ -54,27 +51,18 @@ public class Faktura {
     @JoinColumn(name = "id_fiskalne_godine", nullable = false)
     private FiskalnaGodina fiskalnaGodina;
 	
+	//od koga je naruceno
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
 	
-	//od koga je naruceno
+	//ko je narucio
 		@ManyToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "id_PP", nullable = false)
 	    private PoslovniPartner poslovniPartner;
 	
-	@OneToMany(mappedBy = "faktura", cascade = CascadeType.REMOVE)
-    protected List<StavkaUFakturi> stavke;
-
-	
-	
-	public PoslovniPartner getPoslovniPartner() {
-		return poslovniPartner;
-	}
-
-	public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
-		this.poslovniPartner = poslovniPartner;
-	}
+	@OneToMany(mappedBy = "otpremnica", cascade = CascadeType.REMOVE)
+    protected List<StavkaUOtpremnici> stavke;
 
 	public Long getId() {
 		return id;
@@ -84,20 +72,20 @@ public class Faktura {
 		this.id = id;
 	}
 
-	public Date getDatumFakture() {
-		return datumFakture;
+	public Date getDatumOtpremnice() {
+		return datumOtpremnice;
 	}
 
-	public void setDatumFakture(Date datumFakture) {
-		this.datumFakture = datumFakture;
+	public void setDatumOtpremnice(Date datumOtpremnice) {
+		this.datumOtpremnice = datumOtpremnice;
 	}
 
-	public int getBrojFakture() {
-		return brojFakture;
+	public int getBrojOtpremnice() {
+		return brojOtpremnice;
 	}
 
-	public void setBrojFakture(int brojFakture) {
-		this.brojFakture = brojFakture;
+	public void setBrojOtpremnice(int brojOtpremnice) {
+		this.brojOtpremnice = brojOtpremnice;
 	}
 
 	public Date getDatumValute() {
@@ -148,8 +136,6 @@ public class Faktura {
 		this.ukupnaCena = ukupnaCena;
 	}
 
-
-
 	public NacinPlacanja getNacinPlacanja() {
 		return nacinPlacanja;
 	}
@@ -174,45 +160,48 @@ public class Faktura {
 		this.kompanija = kompanija;
 	}
 
-	public List<StavkaUFakturi> getStavke() {
+	public PoslovniPartner getPoslovniPartner() {
+		return poslovniPartner;
+	}
+
+	public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
+		this.poslovniPartner = poslovniPartner;
+	}
+
+	public List<StavkaUOtpremnici> getStavke() {
 		return stavke;
 	}
 
-	public void setStavke(List<StavkaUFakturi> stavke) {
+	public void setStavke(List<StavkaUOtpremnici> stavke) {
 		this.stavke = stavke;
 	}
-	
-	
 
-	public boolean isOtpremljena() {
-		return otpremljena;
-	}
-
-	public void setOtpremljena(boolean otpremljena) {
-		this.otpremljena = otpremljena;
-	}
-
-	public Faktura(Date datumFakture, int brojFakture, Date datumValute, double ukupanPDV, double ukupnaCenaBezPDVa,
+	public Otpremnica(Date datumOtpremnice, int brojOtpremnice, Date datumValute, double ukupanPDV, double ukupnaCenaBezPDVa,
 			String racunZaUplatu, String pozivNaBroj, double ukupnaCena, NacinPlacanja nacinPlacanja,
-			FiskalnaGodina fiskalnaGodina, Kompanija kompanija, List<StavkaUFakturi> stavke) {
-		super();
-		this.datumFakture = datumFakture;
-		this.brojFakture = brojFakture;
+			FiskalnaGodina fiskalnaGodina, Kompanija kompanija, PoslovniPartner poslovniPartner,
+			List<StavkaUOtpremnici> stavke) {
+		
+		this.datumOtpremnice = datumOtpremnice;
+		this.brojOtpremnice = brojOtpremnice;
 		this.datumValute = datumValute;
 		this.ukupanPDV = ukupanPDV;
 		this.ukupnaCenaBezPDVa = ukupnaCenaBezPDVa;
 		this.racunZaUplatu = racunZaUplatu;
 		this.pozivNaBroj = pozivNaBroj;
 		this.ukupnaCena = ukupnaCena;
-		
 		this.nacinPlacanja = nacinPlacanja;
 		this.fiskalnaGodina = fiskalnaGodina;
 		this.kompanija = kompanija;
+		this.poslovniPartner = poslovniPartner;
 		this.stavke = stavke;
 	}
-	
-	public Faktura(){
-		stavke = new ArrayList<StavkaUFakturi>();
+
+	public Otpremnica() {
+		this.stavke  = new ArrayList<StavkaUOtpremnici>();
 	}
+
+
+	
+	
 
 }

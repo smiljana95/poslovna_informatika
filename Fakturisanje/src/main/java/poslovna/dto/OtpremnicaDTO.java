@@ -1,19 +1,20 @@
 package poslovna.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="faktura")
+@XmlRootElement(name="otpremnica")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class FakturaDTO {
+public class OtpremnicaDTO {
 
 	private Long id;
-	private String datumFakture;
+	private String datumOtpremnice;
 	private String datumValute;
-	private int brojFakture;
+	private int brojOtpremnice;
 	private double ukupanPDV;
 	private double ukupnaCenaBezPDVa;
 	private String racunZaUplatu;
@@ -23,28 +24,18 @@ public class FakturaDTO {
 	private NacinPlacanjaDTO nacinPlacanjaDTO;
 	private FiskalnaGodinaDTO fiskalnaGodinaDTO;
 	private PoslovniPartnerDTO poslovniPartnerDTO;
-	private List<StavkaUFakturiDTO> stavkeUFakturiDTO;
-	private boolean otpremljena;
-	
-	
-	
-	public boolean isOtpremljena() {
-		return otpremljena;
-	}
-	public void setOtpremljena(boolean otpremljena) {
-		this.otpremljena = otpremljena;
-	}
+	private List<StavkaUOtpremniciDTO> stavkeUOtpremniciDTO;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDatumFakture() {
-		return datumFakture;
+	public String getDatumOtpremnice() {
+		return datumOtpremnice;
 	}
-	public void setDatumFakture(String datumFakture) {
-		this.datumFakture = datumFakture;
+	public void setDatumOtpremnice(String datumOtpremnice) {
+		this.datumOtpremnice = datumOtpremnice;
 	}
 	public String getDatumValute() {
 		return datumValute;
@@ -52,11 +43,11 @@ public class FakturaDTO {
 	public void setDatumValute(String datumValute) {
 		this.datumValute = datumValute;
 	}
-	public int getBrojFakture() {
-		return brojFakture;
+	public int getBrojOtpremnice() {
+		return brojOtpremnice;
 	}
-	public void setBrojFakture(int brojFakture) {
-		this.brojFakture = brojFakture;
+	public void setBrojOtpremnice(int brojOtpremnice) {
+		this.brojOtpremnice = brojOtpremnice;
 	}
 	public double getUkupanPDV() {
 		return ukupanPDV;
@@ -112,20 +103,20 @@ public class FakturaDTO {
 	public void setPoslovniPartnerDTO(PoslovniPartnerDTO poslovniPartnerDTO) {
 		this.poslovniPartnerDTO = poslovniPartnerDTO;
 	}
-	public List<StavkaUFakturiDTO> getStavkeUFakturiDTO() {
-		return stavkeUFakturiDTO;
+	public List<StavkaUOtpremniciDTO> getStavkeUOtpremniciDTO() {
+		return stavkeUOtpremniciDTO;
 	}
-	public void setStavkeUFakturiDTO(List<StavkaUFakturiDTO> stavkeUFakturiDTO) {
-		this.stavkeUFakturiDTO = stavkeUFakturiDTO;
+	public void setStavkeUOtpremniciDTO(List<StavkaUOtpremniciDTO> stavkeUOtpremniciDTO) {
+		this.stavkeUOtpremniciDTO = stavkeUOtpremniciDTO;
 	}
-	public FakturaDTO(String datumFakture, String datumValute, int brojFakture, double ukupanPDV,
+	public OtpremnicaDTO(String datumOtpremnice, String datumValute, int brojOtpremnice, double ukupanPDV,
 			double ukupnaCenaBezPDVa, String racunZaUplatu, String pozivNaBroj, double ukupnaCena, boolean poslata,
 			NacinPlacanjaDTO nacinPlacanjaDTO, FiskalnaGodinaDTO fiskalnaGodinaDTO,
-			PoslovniPartnerDTO poslovniPartnerDTO, List<StavkaUFakturiDTO> stavkeUFakturiDTO) {
+			PoslovniPartnerDTO poslovniPartnerDTO, List<StavkaUOtpremniciDTO> stavkeUOtpremniciDTO) {
 		
-		this.datumFakture = datumFakture;
+		this.datumOtpremnice = datumOtpremnice;
 		this.datumValute = datumValute;
-		this.brojFakture = brojFakture;
+		this.brojOtpremnice = brojOtpremnice;
 		this.ukupanPDV = ukupanPDV;
 		this.ukupnaCenaBezPDVa = ukupnaCenaBezPDVa;
 		this.racunZaUplatu = racunZaUplatu;
@@ -135,13 +126,11 @@ public class FakturaDTO {
 		this.nacinPlacanjaDTO = nacinPlacanjaDTO;
 		this.fiskalnaGodinaDTO = fiskalnaGodinaDTO;
 		this.poslovniPartnerDTO = poslovniPartnerDTO;
-		this.stavkeUFakturiDTO = stavkeUFakturiDTO;
+		this.stavkeUOtpremniciDTO = stavkeUOtpremniciDTO;
 	}
-	
-	public FakturaDTO() {
-		
+	public OtpremnicaDTO() {
+		this.stavkeUOtpremniciDTO  = new ArrayList<StavkaUOtpremniciDTO>();
 	}
-	
 	
 	
 }

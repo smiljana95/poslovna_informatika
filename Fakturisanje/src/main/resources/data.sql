@@ -133,3 +133,18 @@ insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_gr
 	
 insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_grada, id_kompanije, role) values 
 	('jelena@gmail.com', 'Jelena', 'Stanarevic', 'jelena', '12345', 'Banovic Strahinje 6', 1, 1, 'REGISTERED');
+	
+	
+insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena)
+	values (1,'2016-11-29 21:00:00','2016-11-29 21:00:00','11','23-22-21212',100.0,100.0,100.0,1,1,1,3,false);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_bezpdva, id_fakture, id_artikla)
+	values (3, 30, 0, 12, 2, 10, 22, 1, 2);	
+	
+	insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_bezpdva, id_fakture, id_artikla)
+	values (3, 30, 0, 12, 2, 10, 22, 1, 1);	
+	
+	
+	

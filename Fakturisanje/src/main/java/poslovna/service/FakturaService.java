@@ -28,6 +28,16 @@ public class FakturaService {
 		// TODO Auto-generated method stub
 		 fakturaRepository.delete(idFakture);
 	}
+
+	public Faktura findById(Long idFakture) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findOne(idFakture);
+	}
+
+	public List<Faktura> findByOtpremljena(boolean b) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findByOtpremljena(b);
+	}
 	
 
 }
