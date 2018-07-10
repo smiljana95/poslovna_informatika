@@ -47,3 +47,35 @@ function prikaziCenovnikAdminu(idCenovnika) {
 	top.location.href = "cenovnikAdmin.html?idCenovnika="+idCenovnika;
 	
 }
+
+function kopirajCenovnik(idCenovnika) {
+	
+	var button = document.getElementById("kopirajKatalogButton");
+	button.setAttribute("onclick","return potvrdiKopiranjeCenovnika('"+idCenovnika +"')");
+	
+	$("#myModal").modal('show');
+}
+
+function potvrdiKopiranjeCenovnika(idCenovnika) {
+	debugger;
+	var procenat = document.getElementById("procenatInput").value;
+	var data = JSON.stringify({
+		"idCenovnika": idCenovnika,
+		"procenat": procenat
+	});
+	$.ajax({
+		async: false,
+		url: "http://localhost:1234/cenovnik/kopiranjeCenovnika",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function (data) {
+        	location.reload();
+        	
+        },
+        error: function (jqxhr, textStatus, errorThrown) {
+        	toastr['warning'] ('Poslovni partner nema cenovnik');
+            
+        }
+	});
+}

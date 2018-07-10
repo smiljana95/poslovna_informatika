@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import poslovna.converter.ArtikalToArtikalDTOConverter;
 import poslovna.converter.CenovnikToCenovnikDTOConverter;
 import poslovna.dto.CenovnikDTO;
+import poslovna.dto.KopiranjeCenovnikaDTO;
 import poslovna.dto.StavkaCenovnikaDTO;
 import poslovna.model.Artikal;
 import poslovna.model.Cenovnik;
@@ -132,5 +133,39 @@ public class CenovnikController {
 		noviAktivanCenovik.setAktivan(true);
 		cenovnikService.save(noviAktivanCenovik);
 		return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnikService.findByKompanija(noviAktivan.getIdKompanije())), HttpStatus.OK);
+	}
+	@RequestMapping(
+			value = "/kopiranjeCenovnika",
+			method = RequestMethod.POST
+	)
+	public ResponseEntity<?> kopiranjeCenovnika(@RequestBody KopiranjeCenovnikaDTO zaKopiranje) {
+		Long id = zaKopiranje.getIdCenovnika();
+		Cenovnik cenovnikStavke = cenovnikService.findById(id);
+		
+		Cenovnik noviCenovnik = new Cenovnik();
+		noviCenovnik.setAktivan(false);
+		
+		noviCenovnik.setDatum_pocetka_vazenja(cenovnikStavke.getDatum_pocetka_vazenja());
+		noviCenovnik.setKompanija(cenovnikStavke.getKompanija());
+		noviCenovnik.setPoslovniPartner(cenovnikStavke.getPoslovniPartner());
+		noviCenovnik.setStavkeUCenovniku(new ArrayList<StavkaUCenovniku>());
+		Cenovnik saved = cenovnikService.save(noviCenovnik);
+
+		double procenat = zaKopiranje.getProcenat();
+		
+		for(int i=0; i< cenovnikStavke.getStavkeUCenovniku().size(); i++){
+			StavkaUCenovniku stavka = new StavkaUCenovniku();
+			stavka.setCenovnik(saved);
+			stavka.setPopust(cenovnikStavke.getStavkeUCenovniku().get(i).getPopust());
+			stavka.setArtikal(cenovnikStavke.getStavkeUCenovniku().get(i).getArtikal());
+			stavka.setCena(cenovnikStavke.getStavkeUCenovniku().get(i).getCena() * procenat /100);
+			stavkaService.save(stavka);
+			saved.getStavkeUCenovniku().add(stavka);
+		
+		}
+		
+		cenovnikService.save(saved);
+		
+		return new ResponseEntity<>( HttpStatus.OK);
 	}
 }
