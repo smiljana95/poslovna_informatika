@@ -141,7 +141,9 @@ public class CenovnikController {
 	public ResponseEntity<?> kopiranjeCenovnika(@RequestBody KopiranjeCenovnikaDTO zaKopiranje) {
 		Long id = zaKopiranje.getIdCenovnika();
 		Cenovnik cenovnikStavke = cenovnikService.findById(id);
-		
+		if(zaKopiranje.getProcenat()==0){
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		}
 		Cenovnik noviCenovnik = new Cenovnik();
 		noviCenovnik.setAktivan(false);
 		
@@ -158,7 +160,7 @@ public class CenovnikController {
 			stavka.setCenovnik(saved);
 			stavka.setPopust(cenovnikStavke.getStavkeUCenovniku().get(i).getPopust());
 			stavka.setArtikal(cenovnikStavke.getStavkeUCenovniku().get(i).getArtikal());
-			stavka.setCena(cenovnikStavke.getStavkeUCenovniku().get(i).getCena() * procenat /100);
+			stavka.setCena(cenovnikStavke.getStavkeUCenovniku().get(i).getCena() * (100 - procenat) /100);
 			stavkaService.save(stavka);
 			saved.getStavkeUCenovniku().add(stavka);
 		

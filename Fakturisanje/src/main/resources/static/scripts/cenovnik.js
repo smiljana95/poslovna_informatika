@@ -57,8 +57,12 @@ function kopirajCenovnik(idCenovnika) {
 }
 
 function potvrdiKopiranjeCenovnika(idCenovnika) {
-	debugger;
+	
 	var procenat = document.getElementById("procenatInput").value;
+	if(procenat.trim()=="" || isNaN(procenat)){
+		toastr["error"]("Unesite ispravnu brojcanu vrednost za procenat.");
+		return;
+	}
 	var data = JSON.stringify({
 		"idCenovnika": idCenovnika,
 		"procenat": procenat
