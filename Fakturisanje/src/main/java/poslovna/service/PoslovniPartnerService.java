@@ -17,5 +17,9 @@ public class PoslovniPartnerService {
 	public List<PoslovniPartner> findByKompanija(Long idKompanije) {
 		return poslovniPartnerRepository.findByKompanijaId(idKompanije);
 	}
+	
+	public PoslovniPartner findById(Long id) {
+		return poslovniPartnerRepository.findOne(id);
+	}
 
 }

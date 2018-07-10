@@ -31,6 +31,10 @@ public class PoslovniPartner {
 	@Column(length = 100)
 	private String naziv;
 	
+	private String pozivNaBroj;
+	
+	private String racunZaUplatu;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_grada", nullable = false)
 	private Grad grad;
@@ -155,6 +159,22 @@ public class PoslovniPartner {
 
 	public void setArtikliNaLageru(List<MagacinskaKartica> artikliNaLageru) {
 		this.artikliNaLageru = artikliNaLageru;
+	}
+
+	public String getPozivNaBroj() {
+		return pozivNaBroj;
+	}
+
+	public void setPozivNaBroj(String pozivNaBroj) {
+		this.pozivNaBroj = pozivNaBroj;
+	}
+
+	public String getRacunZaUplatu() {
+		return racunZaUplatu;
+	}
+
+	public void setRacunZaUplatu(String racunZaUplatu) {
+		this.racunZaUplatu = racunZaUplatu;
 	}
 	
 	

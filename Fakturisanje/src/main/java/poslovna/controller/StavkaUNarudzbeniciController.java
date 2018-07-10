@@ -1,5 +1,7 @@
 package poslovna.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import poslovna.converter.NarudzbenicaToNarudzbenicaDTOConverter;
 import poslovna.model.Artikal;
 import poslovna.model.MagacinskaKartica;
 import poslovna.model.Narudzbenica;
@@ -38,6 +41,9 @@ public class StavkaUNarudzbeniciController {
 	
 	@Autowired
 	private ArtikalService artikalService;
+	
+	@Autowired
+	private NarudzbenicaToNarudzbenicaDTOConverter narudzbenicaToNarudzbenicaDTOConverter;
 	
 	@RequestMapping(
 			value = "/dodajStavku/{idPP}/{idNarudzbenice}/{idArtikla}/{idCenovnika}",
@@ -83,14 +89,24 @@ public class StavkaUNarudzbeniciController {
 				stavka.setJedinicnaCenaSaPDV(stavka.getOsnovica() + stavka.getIznosPDVa());
 				stavka.setArtikal(artikal);
 				stavka.setUkupnaKolicina(kol);
+				narudzbenica.getStavke().add(stavka);
+				double ukupanPdv = 0.0;
+				double ukupnaCenaBezPdva = 0.0;
+				double ukupnaCena = 0.0;
 				
-				narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavka.getOsnovica() * (pdvUProcentima))/100.0));
-				narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavka.getOsnovica());
-				narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavka.getJedinicnaCenaSaPDV());
+				for(int i=0; i<narudzbenica.getStavke().size(); i++){
+					ukupanPdv += narudzbenica.getStavke().get(i).getIznosPDVa();
+					ukupnaCenaBezPdva += narudzbenica.getStavke().get(i).getOsnovica();
+					ukupnaCena += narudzbenica.getStavke().get(i).getJedinicnaCenaSaPDV();
+				}
+				narudzbenica.setUkupanPDV(ukupanPdv);
+				narudzbenica.setUkupnaCenaBezPDVa(ukupnaCenaBezPdva);
+				narudzbenica.setUkupnaCena(ukupnaCena);
 				
 				stavka.setNarudzbenica(narudzbenica);
-				stavkaUNarudzbeniciService.save(stavka);
-				narudzbenicaService.save(narudzbenica);
+				stavkaPronadjena = stavkaUNarudzbeniciService.save(stavka);
+				
+				narudzbenica = narudzbenicaService.save(narudzbenica);
 			} else {
 				stavkaPronadjena.setJedinicnaCena(stavkaUCenovniku.getCena());
 				stavkaPronadjena.setPopust(stavkaUCenovniku.getPopust());
@@ -102,17 +118,27 @@ public class StavkaUNarudzbeniciController {
 				stavkaPronadjena.setArtikal(artikal);
 				stavkaPronadjena.setUkupnaKolicina(kol);
 				
-				narudzbenica.setUkupanPDV(narudzbenica.getUkupanPDV() + ((stavkaPronadjena.getOsnovica() * (pdvUProcentima))/100.0));
-				narudzbenica.setUkupnaCenaBezPDVa(narudzbenica.getUkupnaCenaBezPDVa() + stavkaPronadjena.getOsnovica());
-				narudzbenica.setUkupnaCena(narudzbenica.getUkupnaCena() + stavkaPronadjena.getJedinicnaCenaSaPDV());
+				double ukupanPdv = 0.0;
+				double ukupnaCenaBezPdva = 0.0;
+				double ukupnaCena = 0.0;
+				
+				for(int i=0; i<narudzbenica.getStavke().size(); i++){
+					ukupanPdv += narudzbenica.getStavke().get(i).getIznosPDVa();
+					ukupnaCenaBezPdva += narudzbenica.getStavke().get(i).getOsnovica();
+					ukupnaCena += narudzbenica.getStavke().get(i).getJedinicnaCenaSaPDV();
+				}
+				narudzbenica.setUkupanPDV(ukupanPdv);
+				narudzbenica.setUkupnaCenaBezPDVa(ukupnaCenaBezPdva);
+				narudzbenica.setUkupnaCena(ukupnaCena);
 				
 				stavkaPronadjena.setNarudzbenica(narudzbenica);
-				stavkaUNarudzbeniciService.save(stavkaPronadjena);
-				narudzbenicaService.save(narudzbenica);
+				stavkaPronadjena = stavkaUNarudzbeniciService.save(stavkaPronadjena);
+				
 			}
+			return new ResponseEntity<>(narudzbenicaToNarudzbenicaDTOConverter.convert(narudzbenica), HttpStatus.OK);
 		}
 				
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 	}
 	

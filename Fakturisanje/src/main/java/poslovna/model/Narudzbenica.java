@@ -101,10 +101,6 @@ private Date datumNarudzbenica; //datum kad je faktura kreirana
 		return datumNarudzbenica;
 	}
 
-	public void setDatumNarudzbenice(Date datumNarudzbenica) {
-		this.datumNarudzbenica = datumNarudzbenica;
-	}
-
 	public int getBrojNarudzbenice() {
 		return brojNarudzbenice;
 	}

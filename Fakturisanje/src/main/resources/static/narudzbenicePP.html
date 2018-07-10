@@ -4,9 +4,6 @@
 table {
     font-family: arial, sans-serif;
   
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
     
 }
 td, th {
@@ -45,10 +42,6 @@ body, html {
     background-repeat: repeat-y;
     background-size: 100% 100%;
     
-}
-
-.stavkaTabele{
-	background-color: white;
 }
 
 .okvir{
@@ -91,7 +84,7 @@ body, html {
 	        <ul class="dropdown-menu">
 	            
 	             <li><a onclick="return kreirajDirektnoFakturu()" style="color: #cc0000" data-toggle="tab">Fakturu</a></li>
-	            <li><a onclick="return kreirajDirektnoNarudzbenicu()" style="color: #cc0000" data-toggle="tab">Narudzbenicu</a></li>
+	            <li><a onclick="return kreirajDirektnoNarudzbenicuShowModal()" style="color: #cc0000" data-toggle="tab">Narudzbenicu</a></li>
 	        </ul>
 	    </li>
 	   
@@ -128,6 +121,32 @@ body, html {
 		      
 		    </div>
 		  </div>
+		  
+		  
+		  
+		  
+	<div class="modal fade" id="modalKreirajNarudzbenicu" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Kreiraj narudzbenicu</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>Nacin placanja: </p>
+		          <select class="form-control" id="selectNacinPlacanja">
+		          </select>
+		        </div>
+		        <div class="modal-footer">
+		          <button id="kreirajNarudzbenicuButton" onclick="kreirajDirektnoNarudzbenicu()" type="button" class="btn btn-primary" data-dismiss="modal">Kreiraj</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>		  
+
 	
 	
 	</body>
