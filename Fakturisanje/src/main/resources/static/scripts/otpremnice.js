@@ -19,7 +19,7 @@ $(document).ready(function () {
         	        	div.empty();
         	        	var str = "";
         	        	for(i=0; i<data.length; i++) {
-        	        		str +="<h1>#" + data[i].brojOtpremnice + "</h1>";
+        	        		str +="<div class=\"okvir\"><h1>#" + data[i].brojOtpremnice + "</h1>";
         	        		str +="<table width=\"400\">";
         	        		str +="<tr><td>Broj otpremnice</td><td>" + data[i].brojOtpremnice + "</td></tr>";
         	        		str +="<tr><td>Datum otpremnice</td><td>" + data[i].datumOtpremnice + "</td></tr>";
@@ -71,7 +71,7 @@ $(document).ready(function () {
         	        		//str +="<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>")
         	        		str +="<button onclick=\"eksportujOtpremnicu("+data[i].id+")\"  class=\"btn btn-default\">Eksportuj otpremnicu</button>";
         	        		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiOtpremnicu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi otpremnicu</button>";
-        	        		str +="<div class=\"okvir\"></div><br/><br/>";
+        	        		str +="</div><br/><br/>";
         	        	}
         	        	div.append(str);
         	        },
