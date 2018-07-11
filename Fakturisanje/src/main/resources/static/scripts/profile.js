@@ -69,7 +69,7 @@ $(document).ready(function () {
             	        		
         	        			aktivan = "Ne";
         	        		}
-        	        		var rbr = i+1;
+        	        		var rbr = data[i].id;
         	        		tableCenovnici.append('<tr><td>'+rbr+'</td><td>'+data[i].datumPocetkaVazenja+'</td><td>'+brojStavki+'</td><td>'+aktivan+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnikAdminu('+data[i].id+')\">Prikazi cenovnik</button><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"kopirajCenovnik('+data[i].id+')\">Kopiraj cenovnik</button></td></tr>');
         	        	}
         	        	
@@ -138,7 +138,7 @@ function postaviAktivan(idKompanije){
 	        		
         			aktivan = "Ne";
         		}
-        		var rbr = i+1;
+        		var rbr =data[i].id;
         		tableCenovnici.append('<tr><td>'+rbr+'</td><td>'+data[i].datumPocetkaVazenja+'</td><td>'+brojStavki+'</td><td>'+aktivan+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnikAdminu('+data[i].id+')\">Prikazi cenovnik</button><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"kopirajCenovnik('+data[i].id+')\">Kopiraj cenovnik</button></td></tr>');
           	  
         	}
