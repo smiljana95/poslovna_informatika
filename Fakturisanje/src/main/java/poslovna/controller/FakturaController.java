@@ -195,11 +195,11 @@ public class FakturaController {
 	}
 	
 	@RequestMapping(
-			value = "/getPrimljeneFakture/{idFakture}",
+			value = "/getPrimljeneFakture/{idPP}",
 			method = RequestMethod.GET
 	)
-	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idFakture) {
-		List<Faktura> fakturePrimljene = fakturaService.findByOtpremljenaAndPrimljena(false,true);
+	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idPP) {
+		List<Faktura> fakturePrimljene = fakturaService.findByOtpremljenaAndPrimljenaAndPoslovniPartnerId(false,true,idPP);
 		List<FakturaDTO> fakturePrimljeneDTO = fakturaToFakturaDTOConverter.convert(fakturePrimljene);
 			return new ResponseEntity<>(fakturePrimljeneDTO,HttpStatus.OK);
 		

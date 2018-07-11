@@ -35,6 +35,10 @@ public class Kompanija {
 	@Column(length = 20)
 	private String brojRacuna;
 	
+	@Column(length = 2)
+	private String pozivNaBroj;
+	
+	
 	@OneToMany(mappedBy = "kompanija", cascade = CascadeType.REMOVE)
     protected List<PoslovniPartner> poslovniPartneri;  //one kojima je ona podredjena
 	
@@ -66,6 +70,31 @@ public class Kompanija {
 		radnici = new ArrayList<Radnik>();
 		cenovnici = new ArrayList<Cenovnik>();
 	}
+
+	
+
+	public Long getPid() {
+		return pid;
+	}
+
+
+
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
+
+
+
+	public String getPozivNaBroj() {
+		return pozivNaBroj;
+	}
+
+
+
+	public void setPozivNaBroj(String pozivNaBroj) {
+		this.pozivNaBroj = pozivNaBroj;
+	}
+
 
 
 	public Long getId() {

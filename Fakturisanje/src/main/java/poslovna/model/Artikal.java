@@ -24,7 +24,7 @@ public class Artikal {
 	@Column(length = 100)
 	private String naziv;
 
-	@Column(length = 100)
+	@Column(length = 500)
 	private String opis;
 	
 	@OneToMany(mappedBy = "artikal", cascade = CascadeType.REMOVE)
