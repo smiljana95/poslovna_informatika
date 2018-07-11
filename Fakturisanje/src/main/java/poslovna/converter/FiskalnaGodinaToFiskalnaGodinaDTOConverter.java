@@ -7,9 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import poslovna.dto.FiskalnaGodinaDTO;
-import poslovna.dto.GradDTO;
 import poslovna.model.FiskalnaGodina;
-import poslovna.model.Grad;
 
 @Component
 public class FiskalnaGodinaToFiskalnaGodinaDTOConverter implements Converter<FiskalnaGodina, FiskalnaGodinaDTO> {

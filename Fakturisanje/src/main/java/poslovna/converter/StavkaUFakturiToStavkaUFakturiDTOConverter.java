@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import poslovna.dto.StavkaUFakturiDTO;
-import poslovna.dto.StavkaUNarudzbeniciDTO;
 import poslovna.model.StavkaUFakturi;
-import poslovna.model.StavkaUNarudzbenici;
 
 @Component
 public class StavkaUFakturiToStavkaUFakturiDTOConverter implements Converter<StavkaUFakturi, StavkaUFakturiDTO> {

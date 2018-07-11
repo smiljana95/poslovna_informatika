@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import poslovna.dto.GradDTO;
 import poslovna.dto.StavkaUNarudzbeniciDTO;
-import poslovna.model.Grad;
 import poslovna.model.StavkaUNarudzbenici;
 
 @Component

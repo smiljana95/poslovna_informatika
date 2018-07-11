@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import poslovna.dto.StavkaUOtpremniciDTO;
-
 @Entity
 public class Otpremnica {
 	

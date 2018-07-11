@@ -10,9 +10,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import poslovna.dto.FakturaDTO;
-import poslovna.dto.NarudzbenicaDTO;
 import poslovna.model.Faktura;
-import poslovna.model.Narudzbenica;
 
 @Component
 public class FakturaToFakturaDTOConverter implements Converter<Faktura, FakturaDTO>{

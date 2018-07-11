@@ -75,6 +75,7 @@ function potvrdiKopiranjeCenovnika(idCenovnika) {
         data: data,
         success: function (data) {
         	location.reload();
+        	document.getElementById("procenatInput").value = "";
         	
         },
         error: function (jqxhr, textStatus, errorThrown) {

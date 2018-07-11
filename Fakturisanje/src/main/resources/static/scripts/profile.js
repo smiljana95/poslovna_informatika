@@ -112,6 +112,11 @@ function postaviAktivan(idKompanije){
         dataType: "json",
         success: function (data) {
         	toastr["success"]("Uspesno promenjen aktivan cenovnik.");
+        	//location.reload();
+        	$("#cenovniciSelect").empty();
+        	document.getElementById("cenovniciSelect").value = "";
+        	var paragrafAktivanCenovnik = $("#aktivanCenovnikP");
+        	paragrafAktivanCenovnik.innerHTML = "";
         	$("#modalPromenaAktivnog").modal('toggle');
         	$("#tableCenovnici").find("tr:gt(0)").remove();
         	$("#cenovniciSelect").empty();
@@ -134,8 +139,8 @@ function postaviAktivan(idKompanije){
         			aktivan = "Ne";
         		}
         		var rbr = i+1;
-        		tableCenovnici.append('<tr><td>'+rbr+'</td><td>'+data[i].datumPocetkaVazenja+'</td><td>'+brojStavki+'</td><td>'+aktivan+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnikAdminu('+data[i].id+')\">Prikazi cenovnik</button></td></tr>');
-        		
+        		tableCenovnici.append('<tr><td>'+rbr+'</td><td>'+data[i].datumPocetkaVazenja+'</td><td>'+brojStavki+'</td><td>'+aktivan+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziCenovnikAdminu('+data[i].id+')\">Prikazi cenovnik</button><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"kopirajCenovnik('+data[i].id+')\">Kopiraj cenovnik</button></td></tr>');
+          	  
         	}
         	
         },

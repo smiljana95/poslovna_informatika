@@ -8,9 +8,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import poslovna.dto.ArtikalDTO;
-import poslovna.dto.JedinicaMereDTO;
 import poslovna.model.Artikal;
-import poslovna.model.JedinicaMere;
 
 @Component
 public class ArtikalToArtikalDTOConverter implements Converter<Artikal, ArtikalDTO> {

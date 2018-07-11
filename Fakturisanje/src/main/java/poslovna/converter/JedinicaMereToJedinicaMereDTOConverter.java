@@ -1,16 +1,13 @@
 package poslovna.converter;
 
-import org.springframework.stereotype.Component;
-
-import poslovna.dto.JedinicaMereDTO;
-import poslovna.dto.PoslovniPartnerDTO;
-import poslovna.model.JedinicaMere;
-import poslovna.model.PoslovniPartner;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
+import poslovna.dto.JedinicaMereDTO;
+import poslovna.model.JedinicaMere;
 
 @Component
 public class JedinicaMereToJedinicaMereDTOConverter implements Converter<JedinicaMere, JedinicaMereDTO> {

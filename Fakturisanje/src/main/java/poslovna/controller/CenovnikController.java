@@ -147,6 +147,7 @@ public class CenovnikController {
 		Cenovnik noviCenovnik = new Cenovnik();
 		noviCenovnik.setAktivan(false);
 		
+	
 		noviCenovnik.setDatum_pocetka_vazenja(cenovnikStavke.getDatum_pocetka_vazenja());
 		noviCenovnik.setKompanija(cenovnikStavke.getKompanija());
 		noviCenovnik.setPoslovniPartner(cenovnikStavke.getPoslovniPartner());

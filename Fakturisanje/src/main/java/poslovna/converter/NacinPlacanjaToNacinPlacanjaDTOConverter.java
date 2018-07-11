@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import poslovna.dto.GradDTO;
 import poslovna.dto.NacinPlacanjaDTO;
-import poslovna.model.Grad;
 import poslovna.model.NacinPlacanja;
 
 @Component
