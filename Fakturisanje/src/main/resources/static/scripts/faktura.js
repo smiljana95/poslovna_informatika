@@ -28,7 +28,7 @@ function kreirajDirektnoFakturu(idPP) {
         	var div = $('#divSveFakture');
         	var str="";
         	
-        	str +="<h1>#" + data.brojFakture + "</h1>";
+        	str +="<div class=\"okvir\"><h1>#" + data.brojFakture + "</h1>";
     		str +="<table width=\"400\">";
     		str +="<tr><td>Broj fakture</td><td>" + data.brojFakture + "</td></tr>";
     		str +="<tr><td>Datum fakture</td><td>" + data.datumFakture + "</td></tr>";
@@ -80,7 +80,7 @@ function kreirajDirektnoFakturu(idPP) {
     		
     		str +="<button onclick=\"eksportujFakturu("+data.id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>";
     		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data.id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>";
-    		str +="<div class=\"okvir\"></div><br/><br/>";
+    		str +="</div><br/><br/>";
         	
         	div.append(str);
         	$('#divKreirajFakturu').hide();
