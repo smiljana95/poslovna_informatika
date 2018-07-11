@@ -43,7 +43,11 @@ public class Faktura {
 	
 	private double ukupnaCena;
 	
+	//kreirana otpremnica
 	private boolean otpremljena;
+	
+	//primljena od kupca ili dobavljaca/kupca
+	private boolean primljena;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -58,7 +62,17 @@ public class Faktura {
     @JoinColumn(name = "id_kompanije", nullable = false)
     private Kompanija kompanija;
 	
-	//od koga je naruceno
+	
+	
+	public boolean isPrimljena() {
+		return primljena;
+	}
+
+	public void setPrimljena(boolean primljena) {
+		this.primljena = primljena;
+	}
+
+		//od koga je naruceno
 		@ManyToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "id_PP", nullable = false)
 	    private PoslovniPartner poslovniPartner;
@@ -209,9 +223,13 @@ public class Faktura {
 		this.fiskalnaGodina = fiskalnaGodina;
 		this.kompanija = kompanija;
 		this.stavke = stavke;
+		this.primljena = false;
+		this.otpremljena = false;
 	}
 	
 	public Faktura(){
+		this.primljena=false;
+		this.otpremljena =false;
 		stavke = new ArrayList<StavkaUFakturi>();
 	}
 

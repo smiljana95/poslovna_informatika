@@ -28,7 +28,7 @@ public class StavkaUOtpremnici {
 	
 	private double stopaPDVa; //npr 10%
 	
-	private double jedinicnaCenaBezPDVa;
+	private double jedinicnaCenaSaPDVa;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_otpremnice", nullable = false)
@@ -94,12 +94,12 @@ public class StavkaUOtpremnici {
 		this.stopaPDVa = stopaPDVa;
 	}
 
-	public double getJedinicnaCenaBezPDVa() {
-		return jedinicnaCenaBezPDVa;
+	public double getJedinicnaCenaSaPDVa() {
+		return jedinicnaCenaSaPDVa;
 	}
 
-	public void setJedinicnaCenaBezPDVa(double jedinicnaCenaBezPDVa) {
-		this.jedinicnaCenaBezPDVa = jedinicnaCenaBezPDVa;
+	public void setJedinicnaCenaSaPDVa(double jedinicnaCenaBezPDVa) {
+		this.jedinicnaCenaSaPDVa = jedinicnaCenaBezPDVa;
 	}
 
 	public Otpremnica getOtpremnica() {
@@ -131,7 +131,7 @@ public class StavkaUOtpremnici {
 		this.osnovica = osnovica;
 		this.iznosPDVa = iznosPDVa;
 		this.stopaPDVa = stopaPDVa;
-		this.jedinicnaCenaBezPDVa = jedinicnaCenaBezPDVa;
+		this.jedinicnaCenaSaPDVa = jedinicnaCenaBezPDVa;
 		this.otpremnica = otpremnica;
 		this.artikal = artikal;
 	}

@@ -70,6 +70,7 @@ public class StavkaUNarudzbeniciController {
 		}
 		if(magacinskaKartica.getKolicna() - kol >= 0){
 			magacinskaKartica.setKolicna(magacinskaKartica.getKolicna()-kol);
+			magacinskaKarticaService.save(magacinskaKartica);
 		}else{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}

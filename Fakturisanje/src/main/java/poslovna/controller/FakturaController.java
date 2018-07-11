@@ -147,7 +147,7 @@ public class FakturaController {
 			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> getAllFakture() {
-		List<Faktura> fakture = fakturaService.findAll();
+		List<Faktura> fakture = fakturaService.findByOtpremljenaAndPrimljena(false,false);
 		return new ResponseEntity<>(fakturaToFakturaDTOConverter.convert(fakture), HttpStatus.OK);
 	}
 	
@@ -156,6 +156,10 @@ public class FakturaController {
 			method = RequestMethod.DELETE
 	)
 	public ResponseEntity<?> obrisiFakturu(@PathVariable Long idFakture) {
+		Faktura faktura = fakturaService.findById(idFakture);
+		Narudzbenica narudzbenica = narudzbenicaService.findByBrojNarudzbenice(faktura.getBrojFakture());
+		narudzbenica.setPoslata(false);
+		narudzbenicaService.save(narudzbenica);
 		fakturaService.delete(idFakture);
 			return new ResponseEntity<>(HttpStatus.OK);
 		
@@ -195,7 +199,7 @@ public class FakturaController {
 			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idFakture) {
-		List<Faktura> fakturePrimljene = fakturaService.findByOtpremljena(false);
+		List<Faktura> fakturePrimljene = fakturaService.findByOtpremljenaAndPrimljena(false,true);
 		List<FakturaDTO> fakturePrimljeneDTO = fakturaToFakturaDTOConverter.convert(fakturePrimljene);
 			return new ResponseEntity<>(fakturePrimljeneDTO,HttpStatus.OK);
 		

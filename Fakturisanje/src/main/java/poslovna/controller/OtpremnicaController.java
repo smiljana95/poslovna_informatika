@@ -19,11 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 import poslovna.converter.OtpremnicaToOtpremnicaDTOConverter;
 import poslovna.dto.OtpremnicaDTO;
 import poslovna.model.Faktura;
+import poslovna.model.MagacinskaKartica;
 import poslovna.model.Otpremnica;
+import poslovna.model.Radnik;
 import poslovna.model.StavkaUFakturi;
 import poslovna.model.StavkaUOtpremnici;
 import poslovna.service.FakturaService;
+import poslovna.service.MagacinskaKarticaService;
 import poslovna.service.OtpremnicaService;
+import poslovna.service.RadnikService;
 import poslovna.service.StavkaUOtpremniciService;
 
 @RestController
@@ -42,6 +46,12 @@ public class OtpremnicaController {
 	@Autowired
 	private StavkaUOtpremniciService stavkaUOtpremniciService;
 	
+	@Autowired
+	private MagacinskaKarticaService magacinskaKarticaService;
+	
+	@Autowired
+	private RadnikService radnikService;
+	
 	@RequestMapping(
 			value = "/getAllOtpremnice",
 			method = RequestMethod.GET
@@ -59,6 +69,11 @@ public class OtpremnicaController {
 			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> kreirajOtpremnicu(@PathVariable Long idFakture) {
+		
+		Radnik ulogovani = radnikService.getCurrentUser();
+		if(ulogovani == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		
 		Faktura faktura = fakturaService.findById(idFakture);
 		faktura.setOtpremljena(true);
@@ -94,13 +109,29 @@ public class OtpremnicaController {
 			StavkaUOtpremnici stavkaUOtpremnici = new StavkaUOtpremnici();
 			stavkaUOtpremnici.setArtikal(stavkaUFakturi.getArtikal());
 			stavkaUOtpremnici.setOtpremnica(otpremnica);
-			stavkaUOtpremnici.setIznosPDVa(stavkaUFakturi.getIznosPDVa());
-			stavkaUOtpremnici.setJedinicnaCena(stavkaUFakturi.getJedinicnaCena());
-			stavkaUOtpremnici.setJedinicnaCenaBezPDVa(stavkaUFakturi.getJedinicnaCenaSaPDVa());
-			stavkaUOtpremnici.setOsnovica(stavkaUFakturi.getOsnovica());
 			stavkaUOtpremnici.setPopust(stavkaUFakturi.getPopust());
 			stavkaUOtpremnici.setStopaPDVa(stavkaUFakturi.getStopaPDVa());
-			stavkaUOtpremnici.setUkupnaKolicina(stavkaUFakturi.getUkupnaKolicina());
+			
+			MagacinskaKartica magacinskaKartica = magacinskaKarticaService.findByArtikalIdAndKompanijaId(stavkaUFakturi.getArtikal().getId(), ulogovani.getKompanija().getId());
+			if(magacinskaKartica == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			if(magacinskaKartica.getKolicna() - stavkaUFakturi.getUkupnaKolicina() >= 0){
+				magacinskaKartica.setKolicna(magacinskaKartica.getKolicna()-stavkaUFakturi.getUkupnaKolicina());
+				stavkaUOtpremnici.setIznosPDVa(stavkaUFakturi.getIznosPDVa());
+				stavkaUOtpremnici.setJedinicnaCena(stavkaUFakturi.getJedinicnaCena());
+				stavkaUOtpremnici.setJedinicnaCenaSaPDVa(stavkaUFakturi.getJedinicnaCenaSaPDVa());
+				stavkaUOtpremnici.setOsnovica(stavkaUFakturi.getOsnovica());
+				stavkaUOtpremnici.setUkupnaKolicina(stavkaUFakturi.getUkupnaKolicina());
+			}else{
+				stavkaUOtpremnici.setUkupnaKolicina(magacinskaKartica.getKolicna());
+				stavkaUOtpremnici.setJedinicnaCena(stavkaUFakturi.getJedinicnaCena());
+				stavkaUOtpremnici.setOsnovica(((stavkaUOtpremnici.getUkupnaKolicina() * stavkaUOtpremnici.getJedinicnaCena())*(100.0 - stavkaUOtpremnici.getPopust()))/100.0);
+				stavkaUOtpremnici.setIznosPDVa((stavkaUOtpremnici.getOsnovica() * (stavkaUOtpremnici.getStopaPDVa()))/100.0);
+				stavkaUOtpremnici.setJedinicnaCenaSaPDVa(stavkaUOtpremnici.getOsnovica() + stavkaUOtpremnici.getIznosPDVa());
+				magacinskaKartica.setKolicna(0);
+			}
+			magacinskaKarticaService.save(magacinskaKartica);
 			stavkaUOtpremniciService.save(stavkaUOtpremnici);
 			
 		}
@@ -115,6 +146,10 @@ public class OtpremnicaController {
 			method = RequestMethod.DELETE
 	)
 	public ResponseEntity<?> obrisiOtpremnicu(@PathVariable Long idOtpremnice) {
+		Otpremnica otpremnica = otpremnicaService.findById(idOtpremnice);
+		Faktura faktura = fakturaService.findByBrojFakture(otpremnica.getBrojOtpremnice());
+		faktura.setOtpremljena(false);
+		fakturaService.save(faktura);
 		otpremnicaService.delete(idOtpremnice);
 			return new ResponseEntity<>(HttpStatus.OK);
 		

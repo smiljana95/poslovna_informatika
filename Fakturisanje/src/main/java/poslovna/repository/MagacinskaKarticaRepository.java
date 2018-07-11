@@ -8,4 +8,6 @@ public interface MagacinskaKarticaRepository extends JpaRepository<MagacinskaKar
 
 	MagacinskaKartica findByArtikalIdAndPoslovniPartnerId(Long idArtikla, Long idPP);
 
+	MagacinskaKartica findByArtikalIdAndKompanijaId(Long id, Long id2);
+
 }
