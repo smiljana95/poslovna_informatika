@@ -111,7 +111,7 @@ function kreirajDirektnoNarudzbenicu() {
         	
         	var str = "";
         	
-    		str += "<h1>#" + data.brojNarudzbenice + "</h1>";
+    		str += "<div class=\"okvir\"><h1>#" + data.brojNarudzbenice + "</h1>";
     		str += "<table id=\"tabelaNarudzbenica" + data.id + "\" width=\"400\">";
     		str += "<tr><td>Broj narudzbenice</td><td>" + data.brojNarudzbenice + "</td></tr>";
     		str += "<tr><td>Datum narudzbenice</td><td>" + data.datumNarudzbenice + "</td></tr>";
@@ -163,7 +163,7 @@ function kreirajDirektnoNarudzbenicu() {
     		str += "<button onclick=\"prikaziCenovnik(" + data.poslovniPartnerDTO.id + "," + data.id + ")\" class=\"btn btn-success\">Dodaj stavku</button>";
     		str += "&nbsp&nbsp&nbsp<button onclick=\"kreirajFakturuIzNarudzbenice(" + data.id + ")\" class=\"btn btn-default\">Kreiraj fakturu</button>";
     		str += "&nbsp&nbsp&nbsp<button onclick=\"obrisiNarudzbenicu(" + data.id + ")\" class=\"btn btn-danger\" class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
-    		str += "<div class=\"okvir\"></div><br/><br/>";
+    		str += "</div><br/><br/>";
         	
         	
         	

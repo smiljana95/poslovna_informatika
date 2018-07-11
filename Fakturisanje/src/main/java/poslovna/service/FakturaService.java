@@ -38,6 +38,16 @@ public class FakturaService {
 		// TODO Auto-generated method stub
 		return fakturaRepository.findByOtpremljena(b);
 	}
+
+	public Faktura findByBrojFakture(int brojFakture) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findByBrojFakture(brojFakture);
+	}
+
+	public List<Faktura> findByOtpremljenaAndPrimljena(boolean b, boolean c) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findByOtpremljenaAndPrimljena(b,c);
+	}
 	
 
 }

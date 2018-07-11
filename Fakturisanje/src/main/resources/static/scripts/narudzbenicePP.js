@@ -22,7 +22,7 @@ $(document).ready(function () {
         	        	var str="";
         	        	for(i=0; i<data.length; i++) {
 	        	        	if(!data[i].poslata) {
-	        	        		str += "<h1>#" + data[i].brojNarudzbenice + "</h1>";
+	        	        		str += "<div class=\"okvir\"><h1>#" + data[i].brojNarudzbenice + "</h1>";
 	        	        		str += "<table id=\"tabelaNarudzbenica" + data[i].id + "\" width=\"400\">";
 	        	        		str += "<tr><td>Broj narudzbenice</td><td>" + data[i].brojNarudzbenice + "</td></tr>";
 	        	        		str += "<tr><td>Datum narudzbenice</td><td>" + data[i].datumNarudzbenice + "</td></tr>";
@@ -74,7 +74,7 @@ $(document).ready(function () {
 	        	        		str += "<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>";
 	        	        		str += "&nbsp&nbsp&nbsp<button onclick=\"kreirajFakturuIzNarudzbenice(" + data[i].id + ")\" class=\"btn btn-default\">Kreiraj fakturu</button>";
 	        	        		str += "&nbsp&nbsp&nbsp<button onclick=\"obrisiNarudzbenicu(" + data[i].id + ")\" class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
-	        	        		str += "<div class=\"okvir\"></div><br/><br/>";
+	        	        		str += "</div><br/><br/>";
 	        	        	}
         	        	}
         	        	div.append(str);

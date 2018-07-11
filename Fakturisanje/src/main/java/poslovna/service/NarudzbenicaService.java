@@ -32,4 +32,9 @@ public class NarudzbenicaService {
 		narudzbenicaRepository.delete(id);
 	}
 
+	public Narudzbenica findByBrojNarudzbenice(int brojNarudzbenice) {
+		// TODO Auto-generated method stub
+		return narudzbenicaRepository.findByBrojNarudzbenice(brojNarudzbenice);
+	}
+
 }

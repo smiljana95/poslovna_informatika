@@ -19,7 +19,7 @@ $(document).ready(function () {
         	        	div.empty();
         	        	var str = "";
         	        	for(i=0; i<data.length; i++) {
-        	        		str +="<h1>#" + data[i].brojFakture + "</h1>";
+        	        		str +="<div class=\"okvir\"><h1>#" + data[i].brojFakture + "</h1>";
         	        		str +="<table width=\"400\">";
         	        		str +="<tr><td>Broj fakture</td><td>" + data[i].brojFakture + "</td></tr>";
         	        		str +="<tr><td>Datum fakture</td><td>" + data[i].datumFakture + "</td></tr>";
@@ -70,7 +70,7 @@ $(document).ready(function () {
         	        		str +="<div id=\"divCenovnik" + data[i].id + "\"></div>";
         	        		str +="<button onclick=\"eksportujFakturu("+data[i].id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>";
         	        		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>";
-        	        		str +="<div class=\"okvir\"></div><br/><br/>";
+        	        		str +="</div><br/><br/>";
         	        	}
         	        	div.append(str);
         	        },
@@ -80,11 +80,11 @@ $(document).ready(function () {
         	        }
         		});
         	} else {
-        		top.location.href = "fakture.html";
+        		top.location.href = "index.html";
         	}
         },
         error: function (jqxhr, textStatus, errorThrown) {
-        	toastr['error']('Nije moguce ucitati fakture');
+        	top.location.href = "index.html";
             
         }
 	});

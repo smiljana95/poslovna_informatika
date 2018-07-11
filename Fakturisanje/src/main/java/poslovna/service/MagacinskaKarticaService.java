@@ -17,4 +17,14 @@ public class MagacinskaKarticaService {
 		return magacinskaKarticaRepository.findByArtikalIdAndPoslovniPartnerId(idArtikla,idPP);
 	}
 
+	public MagacinskaKartica findByArtikalIdAndKompanijaId(Long id, Long id2) {
+		// TODO Auto-generated method stub
+		return magacinskaKarticaRepository.findByArtikalIdAndKompanijaId(id, id2);
+	}
+
+	public void save(MagacinskaKartica magacinskaKartica) {
+		magacinskaKarticaRepository.save(magacinskaKartica);
+		
+	}
+
 }
