@@ -49,5 +49,10 @@ public class FakturaService {
 		return fakturaRepository.findByOtpremljenaAndPrimljena(b,c);
 	}
 	
+	public List<Faktura> findByOtpremljenaAndPrimljenaAndPoslovniPartnerId(boolean b, boolean c, Long id) {
+		// TODO Auto-generated method stub
+		return fakturaRepository.findByOtpremljenaAndPrimljenaAndPoslovniPartnerId(b,c,id);
+	}
+	
 
 }

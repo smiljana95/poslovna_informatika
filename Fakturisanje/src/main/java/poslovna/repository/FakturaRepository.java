@@ -13,5 +13,7 @@ public interface FakturaRepository extends JpaRepository<Faktura, Long> {
 	Faktura findByBrojFakture(int brojFakture);
 
 	List<Faktura> findByOtpremljenaAndPrimljena(boolean b, boolean c);
+	
+	List<Faktura> findByOtpremljenaAndPrimljenaAndPoslovniPartnerId(boolean b, boolean c, Long idPP);
 
 }
