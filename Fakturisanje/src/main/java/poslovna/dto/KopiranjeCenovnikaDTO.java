@@ -4,7 +4,16 @@ public class KopiranjeCenovnikaDTO {
 	
 	private Long idCenovnika;
 	private double procenat;
+	private String datum;
 	
+	public String getDatum() {
+		return datum;
+	}
+
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
+
 	public KopiranjeCenovnikaDTO(Long idCenovnika, double procenat) {
 		super();
 		this.idCenovnika = idCenovnika;

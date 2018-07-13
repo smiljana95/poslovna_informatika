@@ -50,7 +50,7 @@ public class Cenovnik {
 	public void setDatum_pocetka_vazenja(Date datum_pocetka_vazenja) {
 		this.datum_pocetka_vazenja = datum_pocetka_vazenja;
 	}
-
+	
 	public Cenovnik(Date datum_pocetka_vazenja, Date datum_isteka_vazenja) {
 		
 		this.datum_pocetka_vazenja = datum_pocetka_vazenja;

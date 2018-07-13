@@ -52,20 +52,34 @@ function kopirajCenovnik(idCenovnika) {
 	
 	var button = document.getElementById("kopirajKatalogButton");
 	button.setAttribute("onclick","return potvrdiKopiranjeCenovnika('"+idCenovnika +"')");
-	
+	var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+   
+    $('#datumVazenjaKopiranog').attr('min', maxDate);
 	$("#myModal").modal('show');
 }
 
 function potvrdiKopiranjeCenovnika(idCenovnika) {
 	
 	var procenat = document.getElementById("procenatInput").value;
+	var datumVazenja = document.getElementById("datumVazenjaKopiranog").value;
 	if(procenat.trim()=="" || isNaN(procenat)){
 		toastr["error"]("Unesite ispravnu brojcanu vrednost za procenat.");
 		return;
 	}
 	var data = JSON.stringify({
 		"idCenovnika": idCenovnika,
-		"procenat": procenat
+		"procenat": procenat,
+		"datum" : datumVazenja
 	});
 	$.ajax({
 		async: false,

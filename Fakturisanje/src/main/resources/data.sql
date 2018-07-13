@@ -252,11 +252,13 @@ insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera
 	
 --nasi cenovnici
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
-	values ('2016-10-18 21:00:00', 1, null, false);
+	values ('2016-10-18 00:00:00', 1, null, false);
 insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
-	values ('2017-11-29 21:00:00', 1, null, true);
-
-
+	values ('2017-11-29 00:00:00', 1, null, false);
+insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
+	values ('2017-11-27 00:00:00', 1, null, false);
+insert into cenovnik (datum_pocetka_vazenja, id_kompanije, id_poslovnog_partnera, aktivan)
+	values ('2015-11-27 00:00:00', 1, null, false);
 -- Medifit Max
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (1, 1, 1200, 0);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (2, 1, 500, 0);

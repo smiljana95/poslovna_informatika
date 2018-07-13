@@ -1,6 +1,12 @@
 package poslovna.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,8 +63,40 @@ public class CenovnikController {
 			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> getByKompanija(@PathVariable Long idKompanije) {
-		return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnikService.findByKompanija(idKompanije)), HttpStatus.OK);
-
+		ArrayList<Cenovnik> cenovnici = (ArrayList<Cenovnik>) cenovnikService.findByKompanija(1L);
+		
+		Collections.sort(cenovnici, new Comparator<Cenovnik>() {
+			
+			@Override
+			public int compare(Cenovnik arg0, Cenovnik arg1) {
+				return arg0.getDatum_pocetka_vazenja().compareTo(arg1.getDatum_pocetka_vazenja());
+			}
+			});
+		boolean setted = false;
+		for(int i = 0; i < cenovnici.size(); i++){
+			cenovnici.get(i).setAktivan(false);
+		}
+		for(int i = 0; i < cenovnici.size(); i++){
+			if(cenovnici.get(i).getDatum_pocetka_vazenja().after(new Date())){
+				if(i>0){
+					int brAktivnog = i-1;
+					cenovnici.get(brAktivnog).setAktivan(true);
+					cenovnikService.save(cenovnici.get(brAktivnog));
+					setted = true;
+					break;
+				}else{
+					cenovnici.get(0).setAktivan(true);
+					cenovnikService.save(cenovnici.get(0));
+					setted = true;
+					break;
+				}
+			}
+		}
+		if(!setted){
+			cenovnici.get(cenovnici.size()-1).setAktivan(true);
+			cenovnikService.save(cenovnici.get(cenovnici.size()-1));
+		}
+	return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnici), HttpStatus.OK);
 	}
 	@RequestMapping(
 			value = "/getCenovnikZaPrikaz/{idCenovnika}",
@@ -138,7 +176,7 @@ public class CenovnikController {
 			value = "/kopiranjeCenovnika",
 			method = RequestMethod.POST
 	)
-	public ResponseEntity<?> kopiranjeCenovnika(@RequestBody KopiranjeCenovnikaDTO zaKopiranje) {
+	public ResponseEntity<?> kopiranjeCenovnika(@RequestBody KopiranjeCenovnikaDTO zaKopiranje) throws ParseException {
 		Long id = zaKopiranje.getIdCenovnika();
 		Cenovnik cenovnikStavke = cenovnikService.findById(id);
 		if(zaKopiranje.getProcenat()==0){
@@ -146,9 +184,10 @@ public class CenovnikController {
 		}
 		Cenovnik noviCenovnik = new Cenovnik();
 		noviCenovnik.setAktivan(false);
+		String datum = zaKopiranje.getDatum() + " 00:00:00";
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-	
-		noviCenovnik.setDatum_pocetka_vazenja(cenovnikStavke.getDatum_pocetka_vazenja());
+		noviCenovnik.setDatum_pocetka_vazenja((dateFormat.parse(datum)));
 		noviCenovnik.setKompanija(cenovnikStavke.getKompanija());
 		noviCenovnik.setPoslovniPartner(cenovnikStavke.getPoslovniPartner());
 		noviCenovnik.setStavkeUCenovniku(new ArrayList<StavkaUCenovniku>());
@@ -170,5 +209,45 @@ public class CenovnikController {
 		cenovnikService.save(saved);
 		
 		return new ResponseEntity<>( HttpStatus.OK);
+	}
+	@RequestMapping(
+			value = "/podesiAktivan",
+			method = RequestMethod.GET
+	)
+	public ResponseEntity<?> podesiAktivan(){
+		ArrayList<Cenovnik> cenovnici = (ArrayList<Cenovnik>) cenovnikService.findByKompanija(1L);
+		
+		Collections.sort(cenovnici, new Comparator<Cenovnik>() {
+			
+			@Override
+			public int compare(Cenovnik arg0, Cenovnik arg1) {
+				return arg0.getDatum_pocetka_vazenja().compareTo(arg1.getDatum_pocetka_vazenja());
+			}
+			});
+		boolean setted = false;
+		for(int i = 0; i < cenovnici.size(); i++){
+			cenovnici.get(i).setAktivan(false);
+		}
+		for(int i = 0; i < cenovnici.size(); i++){
+			if(cenovnici.get(i).getDatum_pocetka_vazenja().after(new Date())){
+				if(i>0){
+					int brAktivnog = i-1;
+					cenovnici.get(brAktivnog).setAktivan(true);
+					cenovnikService.save(cenovnici.get(brAktivnog));
+					setted = true;
+					break;
+				}else{
+					cenovnici.get(0).setAktivan(true);
+					cenovnikService.save(cenovnici.get(0));
+					setted = true;
+					break;
+				}
+			}
+		}
+		if(!setted){
+			cenovnici.get(cenovnici.size()-1).setAktivan(true);
+			cenovnikService.save(cenovnici.get(cenovnici.size()-1));
+		}
+	return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnici), HttpStatus.OK);
 	}
 }
