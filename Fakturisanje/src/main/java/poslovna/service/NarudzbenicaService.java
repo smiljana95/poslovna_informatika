@@ -37,4 +37,15 @@ public class NarudzbenicaService {
 		return narudzbenicaRepository.findByBrojNarudzbenice(brojNarudzbenice);
 	}
 
+	public List<Narudzbenica> findByPoslovniPartnerIdAndKompanijaIDAndOdKupca(Long idPP, Long idKompanije, boolean b) {
+		// TODO Auto-generated method stub
+		return narudzbenicaRepository.findByPoslovniPartnerIdAndKompanijaIdAndOdKupca(idPP, idKompanije, b);
+	}
+
+	public List<Narudzbenica> findByPoslovniPartnerIdAndKompanijaIDAndOdKupcaAndPoslata(Long idPP, Long idKompanije,
+			boolean b, boolean c) {
+		// TODO Auto-generated method stub
+		return narudzbenicaRepository.findByPoslovniPartnerIdAndKompanijaIdAndOdKupcaAndPoslata(idPP, idKompanije, b, c);
+	}
+
 }

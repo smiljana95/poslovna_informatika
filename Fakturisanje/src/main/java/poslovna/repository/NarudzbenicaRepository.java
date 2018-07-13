@@ -12,4 +12,9 @@ public interface NarudzbenicaRepository extends JpaRepository<Narudzbenica, Long
 
 	Narudzbenica findByBrojNarudzbenice(int brojNarudzbenice);
 
+	List<Narudzbenica> findByPoslovniPartnerIdAndKompanijaIdAndOdKupca(Long idPP, Long idKompanije, boolean b);
+
+	List<Narudzbenica> findByPoslovniPartnerIdAndKompanijaIdAndOdKupcaAndPoslata(Long idPP, Long idKompanije, boolean b,
+			boolean c);
+
 }

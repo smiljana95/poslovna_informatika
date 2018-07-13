@@ -104,4 +104,16 @@ public class NarudzbenicaController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	@RequestMapping(
+			value = "/getPrimljeneNarudzbenice/{idPP}",
+			method = RequestMethod.GET
+	)
+	public ResponseEntity<?> getPrimljeneNarudzbenice(@PathVariable Long idPP) {
+		Long idKompanije = radnikService.getCurrentUser().getKompanija().getId();
+		List<Narudzbenica> narudzbenica = narudzbenicaService.findByPoslovniPartnerIdAndKompanijaIDAndOdKupcaAndPoslata(idPP,idKompanije, true, false);
+		
+		return new ResponseEntity<>(narudzbenicaToNarudzbenicaDTOConverter.convert(narudzbenica), HttpStatus.OK);
+
+	}
+	
 }

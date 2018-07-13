@@ -22,13 +22,13 @@ $(document).ready(function () {
         	        	
         	        	for(i=0;i<data.length;i++){
         	        		if(data[i].tipPoslovnogPartneraDTO.naziv == 'dobavljac'){
-        	        			divDobavljaci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziNarudzbenice('+data[i].id+')\">Prikazi narudzbenice</button></td></tr>');
+        	        			divDobavljaci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%\" class=\"btn btn-default\" onclick=\"prikaziNaseNarudzbenice('+data[i].id+')\">Narudzbenice</button></td><td><button style=\"margin-left:3%;margin-right:15%;\" class=\"btn btn-default\" onclick=\"prikaziUlazneFakture('+data[i].id+')\">Ulazne fakture</button></td></tr>');
         	        			ceoDivDob.append(divDobavljaci);
         	        		}else if(data[i].tipPoslovnogPartneraDTO.naziv == 'kupac'){
-        	        			divKupci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td ><button style=\"margin-left:15%;\" class=\"btn btn-default\" onclick=\"prikaziPrimljeneFakture('+data[i].id+')\">Prikazi fakture</button></td></tr>');
+        	        			divKupci.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td ><button style=\"margin-left:15%;\" class=\"btn btn-default\" onclick=\"prikaziPrimljeneNarudzbenice('+data[i].id+')\">Narudzbenice</button></td></tr>');
         	        			ceoDivKup.append(divKupci);
         	        		}else if(data[i].tipPoslovnogPartneraDTO.naziv == 'kupacdobavljac'){
-        	        			divKupDob.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%;\" class=\"btn btn-default\" onclick=\"prikaziNarudzbenice('+data[i].id+')\">Prikazi narudzbenice</button></td><td><button style=\"margin-left:3%;margin-right:15%;\" class=\"btn btn-default\" onclick=\"prikaziPrimljeneFakture('+data[i].id+')\">Prikazi fakture</button></td></tr>');
+        	        			divKupDob.append('<tr><td>'+data[i].naziv+'</td><td>'+data[i].gradDTO.naziv+'</td><td>'+data[i].adresa+'</td><td>'+data[i].kontaktTelefon+'</td><td><button style=\"margin-left:15%;\" class=\"btn btn-default\" onclick=\"prikaziNaseNarudzbenice('+data[i].id+')\">Prikazi narudzbenice</button></td><td><button style=\"margin-left:3%;margin-right:15%;\" class=\"btn btn-default\" onclick=\"prikaziPrimljeneFakture('+data[i].id+')\">Prikazi fakture</button></td></tr>');
         	        			ceoDivKupDob.append(divKupDob);
         	        		}
         	        	}

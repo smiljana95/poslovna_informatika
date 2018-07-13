@@ -149,6 +149,15 @@ public class FakturaController {
 	}
 	
 	@RequestMapping(
+			value = "/getIzlazneFakture/{idPP}",
+			method = RequestMethod.GET
+	)
+	public ResponseEntity<?> getIzlazneFakture(@PathVariable Long idPP) {
+		List<Faktura> fakture = fakturaService.findByOtpremljenaAndPrimljenaAndPoslovniPartnerId(false,false, idPP);
+		return new ResponseEntity<>(fakturaToFakturaDTOConverter.convert(fakture), HttpStatus.OK);
+	}
+	
+	@RequestMapping(
 			value = "/obrisiFakturu/{idFakture}",
 			method = RequestMethod.DELETE
 	)
@@ -192,7 +201,7 @@ public class FakturaController {
 	}
 	
 	@RequestMapping(
-			value = "/getPrimljeneFakture/{idPP}",
+			value = "/getUlazneFakture/{idPP}",
 			method = RequestMethod.GET
 	)
 	public ResponseEntity<?> getPrimljeneFakture(@PathVariable Long idPP) {

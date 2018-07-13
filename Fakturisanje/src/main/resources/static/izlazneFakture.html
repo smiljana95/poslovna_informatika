@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<style>
+table {
+    font-family: arial, sans-serif;
+  
+    
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+h4{
+	margin-left:21.5%;
+	color:white;
+}
+tr:nth-child(even) {
+    background-color: white;
+}
+tr:nth-child(odd) {
+    background-color: #003366;
+    color:white;
+    
+}
+.TextBox > div {
+    margin:0 auto;
+    width:250px;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+a{
+	cursor: pointer;
+}
+
+
+.bg {
+    /* The image used */
+    background-image: url("bubbles.jpg");
+
+    /* Full height */
+
+    /* Center and scale the image nicely */
+    background-repeat: repeat-y;
+    background-size: 100% 100%;
+    
+}
+
+.okvir{
+	border: 1px solid gray;
+	margin-right:15%;
+	margin-top:2%;
+	padding-left:2%;
+	padding-bottom:2%;
+	background-color:#eeeeee;
+	opacity:0.9;
+	-moz-box-shadow:    inset 0 0 10px #000000;
+   	-webkit-box-shadow: inset 0 0 10px #000000;
+   	box-shadow:         inset 0 0 10px #000000;
+}
+
+</style>
+	<head>
+		<meta charset="UTF-8">
+		<title>Narudzbenice</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<script src="scripts/izlazneFaktureReady.js"></script>
+		<script src="scripts/izlazneFakture.js"></script>
+		
+		<script src="toastr/toastr.min.js"></script>
+    	<link href="toastr/toastr.min.css" rel="stylesheet"/>
+	</head>
+	
+	<body>
+	<div class="bg" >
+	
+	
+	<ul class="nav nav-tabs" id="myTab">
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabProfileName" style="color: #cc0000" ><span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	            <li><a onclick="return logout()" style="color: #cc0000">Logout</a></li>
+	        </ul>
+	    </li>
+	    
+	    
+	    <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a onclick="return kreirajDirektnoNarudzbenicuShowModal()" style="color: #cc0000">Narudzbenicu</a></li>
+	        </ul>
+	    </li>
+	    
+	    <li><a href="fakture.html" style="color: #cc0000">Fakture</a></li>
+	    
+	    <li><a href="otpremnice.html" style="color: #cc0000">Otpremnice</a></li>
+	    
+	    <li><a href="home.html" style="color: #cc0000">Home</a></li>
+	   
+	</ul>
+	
+	
+			
+	<div id="divSveIzlazneFakture" style="padding-left:3%;">
+	</div>
+	</div>  
+
+	
+	
+	</body>
+	
+	</html>

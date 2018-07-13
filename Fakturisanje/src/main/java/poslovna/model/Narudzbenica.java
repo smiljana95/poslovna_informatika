@@ -23,7 +23,7 @@ public class Narudzbenica {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-private Date datumNarudzbenica; //datum kad je faktura kreirana
+private Date datumNarudzbenice; //datum kad je faktura kreirana
 	
 	private int brojNarudzbenice;
 	
@@ -43,6 +43,8 @@ private Date datumNarudzbenica; //datum kad je faktura kreirana
 	private double ukupnaCena;
 	
 	private boolean poslata;
+	
+	private boolean odKupca;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_nacina_placanja", nullable = false)
@@ -70,7 +72,7 @@ private Date datumNarudzbenica; //datum kad je faktura kreirana
 			NacinPlacanja nacinPlacanja, FiskalnaGodina fiskalnaGodina, Kompanija kompanija,
 			PoslovniPartner poslovniPartner) {
 		this.stavke = new ArrayList<StavkaUNarudzbenici>();
-		this.datumNarudzbenica = datumNarudzbenica;
+		this.datumNarudzbenice = datumNarudzbenica;
 		this.brojNarudzbenice = brojNarudzbenice;
 		
 		this.ukupanPDV = ukupanPDV;
@@ -98,7 +100,7 @@ private Date datumNarudzbenica; //datum kad je faktura kreirana
 	}
 
 	public Date getDatumNarudzbenica() {
-		return datumNarudzbenica;
+		return datumNarudzbenice;
 	}
 
 	public int getBrojNarudzbenice() {
@@ -199,14 +201,15 @@ private Date datumNarudzbenica; //datum kad je faktura kreirana
 	}
 
 	public void setDatumNarudzbenica(Date datumNarudzbenica) {
-		this.datumNarudzbenica = datumNarudzbenica;
+		this.datumNarudzbenice = datumNarudzbenica;
 	}
-	
-	
-	
-	
-	
 
-	
+	public boolean isOdKupca() {
+		return odKupca;
+	}
+
+	public void setOdKupca(boolean odKupca) {
+		this.odKupca = odKupca;
+	}
 	
 }

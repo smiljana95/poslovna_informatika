@@ -346,10 +346,10 @@ insert into nacin_placanja (naziv_tipa_placanja) values ('gotovina');
 insert into fiskalna_godina (broj_godine, aktivna, id_kompanije) values ('2018', true, 1);
 
 -- narudzbenice ka medifit max
-insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+insert into narudzbenica (datum_narudzbenice, broj_narudzbenice, ukupan_pdv, 
 	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
-	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
-	('2018-01-29 21:00:00', 1, 3300, 33000, '121-856642-55', '75', 36300, false, 1, 1, 1, 1);
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP,od_kupca) values 
+	('2018-01-29 21:00:00', 1, 3300, 33000, '121-856642-55', '75', 36300, false, 1, 1, 1, 1, false);
 
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
@@ -363,10 +363,10 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 	
 	
 -- narudzbenice ka lusa pharm
-insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+insert into narudzbenica (datum_narudzbenice, broj_narudzbenice, ukupan_pdv, 
 	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
-	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
-	('2018-01-25 21:00:00', 2, 13120, 131200, '784-445136-00', '36', 144320, false, 1, 1, 1, 2);
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP, od_kupca) values 
+	('2018-01-25 21:00:00', 2, 13120, 131200, '784-445136-00', '36', 144320, false, 1, 1, 1, 2, false);
 
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
@@ -376,10 +376,10 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 	values (20, 5000, 0, 100000, 10000, 10, 110000, 2, 6);
 	
 	
-insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+insert into narudzbenica (datum_narudzbenice, broj_narudzbenice, ukupan_pdv, 
 	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
-	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
-	('2018-02-25 21:00:00', 3, 13120, 131200, '784-445136-00', '36', 144320, false, 1, 1, 1, 2);
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP, od_kupca) values 
+	('2018-02-25 21:00:00', 3, 13120, 131200, '784-445136-00', '36', 144320, false, 1, 1, 1, 2, false);
 
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
@@ -390,10 +390,10 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 	
 	
 --narudzbenica ka medifit doo
-insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+insert into narudzbenica (datum_narudzbenice, broj_narudzbenice, ukupan_pdv, 
 	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
-	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
-	('2018-03-21 21:00:00', 4, 4590, 45900, '444-954120-77', '92', 50490, false, 1, 1, 1, 9);
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP, od_kupca) values 
+	('2018-03-21 21:00:00', 4, 4590, 45900, '444-954120-77', '92', 50490, false, 1, 1, 1, 9, false);
 
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
@@ -403,10 +403,10 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 	values (10, 2000, 20, 16000, 1600, 10, 17600, 4, 19);
 	
 	
-insert into narudzbenica (datum_narudzbenica, broj_narudzbenice, ukupan_pdv, 
+insert into narudzbenica (datum_narudzbenice, broj_narudzbenice, ukupan_pdv, 
 	ukupna_cena_bezpdva, racun_za_uplatu, poziv_na_broj, ukupna_cena,
-	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP) values 
-	('2018-04-21 21:00:00', 5, 4000, 40000, '444-954120-77', '92', 44000, false, 1, 1, 1, 9);
+	poslata, id_nacina_placanja, id_fiskalne_godine, id_kompanije, id_PP, od_kupca) values 
+	('2018-04-21 21:00:00', 5, 4000, 40000, '444-954120-77', '92', 44000, false, 1, 1, 1, 9, false);
 
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
@@ -414,6 +414,7 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
 	values (10, 1000, 0, 10000, 1000, 10, 11000, 5, 21);
+
 	
 	
 insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_grada, id_kompanije, role) values 
@@ -428,26 +429,26 @@ insert into Radnik (email, ime, prezime, lozinka, kontakt_telefon, adresa, id_gr
 	
 	
 -- pristigle od treff sporta
-insert into Faktura (id,broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
-	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
-	values (100,100,'2017-11-29 21:00:00','2018-12-29 21:00:00','23','200-123456-00',800,8800,8000,1,1,1,5,false,true);
+insert into Narudzbenica (broj_narudzbenice,datum_narudzbenice,poziv_na_broj,racun_za_uplatu,ukupan_pdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,od_kupca, poslata)
+	values (6,'2017-11-29 21:00:00','23','200-123456-00',800,8800,8000,1,1,1,5,true, false);
 
-insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
-	values (10, 500, 0, 5000, 500, 10, 5500, 100, 35);		
-insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
-	values (10, 300, 0, 3000, 300, 10, 3300, 100, 36);	
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 500, 0, 5000, 500, 10, 5500, 6, 35);		
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 300, 0, 3000, 300, 10, 3300, 6, 36);	
 	
 	
 -- pristigle od gb medic
-insert into Faktura (id,broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
-	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
-	values (101,101,'2018-01-21 21:00:00','2019-02-21 21:00:00','23','200-123456-00',800,8800,8000,1,1,1,6,false,true);
+insert into Narudzbenica (broj_narudzbenice,datum_narudzbenice,poziv_na_broj,racun_za_uplatu,ukupan_pdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,od_kupca, poslata)
+	values (7,'2018-01-21 21:00:00','23','200-123456-00',800,8800,8000,1,1,1,6,true, false);
 
-insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
-	values (10, 600, 0, 6000, 600, 10, 6600, 101, 37);		
-insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
-	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
-	values (10, 200, 0, 2000, 200, 10, 2200, 101, 38);	
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 600, 0, 6000, 600, 10, 6600, 7, 37);		
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 200, 0, 2000, 200, 10, 2200, 7, 38);	
