@@ -13,18 +13,18 @@ $(document).ready(function () {
         		var idPP = url.searchParams.get("idPP");
         		$.ajax({
         			async: false,
-        			url: "http://localhost:1234/faktura/getPrimljeneFakture/"+idPP,
+        			url: "http://localhost:1234/narudzbenica/getPrimljeneNarudzbenice/"+idPP,
         	        type: "GET",
         	        dataType: "json",
         	        success: function (data) {
-        	        	var div = $('#divSvePrimljeneFakture');
+        	        	var div = $('#divSvePrimljeneNarudzbenice');
         	        	div.empty();
         	        	var str = "";
         	        	for(i=0; i<data.length; i++) {
-        	        		str +="<div class=\"okvir\"><h1>#" + data[i].brojFakture + "</h1>";
+        	        		str +="<div class=\"okvir\"><h1>#" + data[i].brojNarudzbenice + "</h1>";
         	        		str +="<table width=\"400\">";
-        	        		str +="<tr><td>Broj fakture</td><td>" + data[i].brojFakture + "</td></tr>";
-        	        		str +="<tr><td>Datum fakture</td><td>" + data[i].datumFakture + "</td></tr>";
+        	        		str +="<tr><td>Broj fakture</td><td>" + data[i].brojNarudzbenice + "</td></tr>";
+        	        		str +="<tr><td>Datum fakture</td><td>" + data[i].datumNarudzbenice + "</td></tr>";
         	        		str +="<tr><td>Ukupan PDV</td><td>" + data[i].ukupanPDV + "</td></tr>";
         	        		str +="<tr><td>Ukupna cena bez PDV-a</td><td>" + data[i].ukupnaCenaBezPDVa + "</td></tr>";
         	        		str +="<tr><td>Ukupna cena</td><td>" + data[i].ukupnaCena + "</td></tr>";
@@ -52,27 +52,27 @@ $(document).ready(function () {
         	        		str +="<th class=\"stavkaTabele\">Iznos PDV-a</th>";
         	        		str +="<th class=\"stavkaTabele\">Stopa PDV-a</th>";
         	        		str +="<th class=\"stavkaTabele\">Jedinicna cena sa PDV-om</th>";
-        	        		for(j=0; j<data[i].stavkeUFakturiDTO.length; j++) {
+        	        		for(j=0; j<data[i].stavkeUNarudzbeniciDTO.length; j++) {
         	        			str +="<tr>";
         	        			
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.naziv + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.opis + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].ukupnaKolicina + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].artikalDTO.jedinicaMereDTO.oznaka + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].jedinicnaCena + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].popust + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].osnovica + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].iznosPDVa + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].stopaPDVa + "</td>";
-        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUFakturiDTO[j].jedinicnaCenaSaPDV + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].artikalDTO.naziv + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].artikalDTO.opis + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].ukupnaKolicina + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].artikalDTO.jedinicaMereDTO.oznaka + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].jedinicnaCena + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].popust + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].osnovica + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].iznosPDVa + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].stopaPDVa + "</td>";
+        	        			str +="<td class=\"stavkaTabele\">" + data[i].stavkeUNarudzbeniciDTO[j].jedinicnaCenaSaPDV + "</td>";
         	        			
         	        			str +="</tr>";
         	        		}
         	        		str +="</table><br/><br/>";
         	        		str +="<div id=\"divCenovnik" + data[i].id + "\"></div>";
         	        		//str +="<button onclick=\"prikaziCenovnik(" + data[i].poslovniPartnerDTO.id + "," + data[i].id + ")\" class=\"btn btn-success\">Dodaj stavku</button>")
-        	        		str +="<button onclick=\"otpremiFakturu("+data[i].id+")\"  class=\"btn btn-default\">Otpremi fakturu</button>";
-        	        		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>";
+        	        		str +="<button onclick=\"kreirajIzlaznuFakturu("+data[i].id+"," + data[i].poslovniPartnerDTO.id + ")\"  class=\"btn btn-default\">Kreiraj fakturu</button>";
+        	        		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiPrimljenuNarudzbenicu("+data[i].id+")\" class=\"btn btn-danger\">Obrisi narudzbenicu</button>";
         	        		str +="</div><br/><br/>";
         	        	}
         	        	div.append(str);
@@ -97,30 +97,33 @@ $(document).ready(function () {
 })
 
 
-function otpremiFakturu(idFakture){
+function kreirajIzlaznuFakturu(idNarudzbenice, idPP){
 	$.ajax({
 		async: false,
-		url: "http://localhost:1234/otpremnica/kreirajOtpremnicu/"+idFakture,
+		url: "http://localhost:1234/faktura/kreirajFakturuIzNarudzbenice/"+idNarudzbenice,
         type: "GET",
         success: function (data) {
-        	top.location.href ="otpremnice.html";
+        	top.location.href ="izlazneFakture.html?idPP="+idPP;
         },
         error: function (jqxhr, textStatus, errorThrown) {
-        	toastr['error']('Nije moguce otpremiti fakturu');
+        	toastr['error']('Nije moguce kreirati izlaznu fakturu.');
         } 
 	 });
 }
 
-function obrisiFakturu(idFakture){
+function obrisiPrimljenuNarudzbenicu(idNarudzbenice){
 	$.ajax({
 		async: false,
-		url: "http://localhost:1234/faktura/obrisiFakturu/"+idFakture,
+		url: "http://localhost:1234/narudzbenica/delete/"+idNarudzbenice,
         type: "DELETE",
         success: function (data) {
-        	top.location.href = "fakture.html";
+        	var url_string = window.location.href;
+    		var url = new URL(url_string);
+    		var idPP = url.searchParams.get("idPP");
+        	top.location.href = "primljeneNarudzbeniceKupac.html";
         },
         error: function (jqxhr, textStatus, errorThrown) {
-        	toastr['error']('Nije moguce obrisati fakturu');
+        	toastr['error']('Nije moguce obrisati narudzbenicu.');
         } 
         });
 }

@@ -1,5 +1,5 @@
-function prikaziNarudzbenice(idPP){
-	top.location.href = "narudzbenicePP.html?idPP="+idPP;
+function prikaziNaseNarudzbenice(idPP){
+	top.location.href = "naseNarudzbenice.html?idPP="+idPP;
 }
 
 function dodajStavkuUNarudzbenicu() {
