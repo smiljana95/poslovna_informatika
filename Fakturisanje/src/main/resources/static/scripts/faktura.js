@@ -1,7 +1,9 @@
-function kreirajDirektnoFakturu(idPP) {
+function kreirajDirektnoFakturu(idCenovnika) {
 	idNacinaPlacanja = $('#selectDodajFakturuNacinPlacanja').val();
 	elements = $('.inputKolicina');
-	
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var idPP = url.searchParams.get("idPP");
 	var listOfObjects = [];
 	for(i=0; i<elements.length; i++) {
 		var singleObj = {}
@@ -25,7 +27,7 @@ function kreirajDirektnoFakturu(idPP) {
         data: data,
         success: function (data) {
         	
-        	var div = $('#divSveFakture');
+        	var div = $('#divSveIzlazneFakture');
         	var str="";
         	
         	str +="<div class=\"okvir\"><h1>#" + data.brojFakture + "</h1>";
@@ -78,8 +80,9 @@ function kreirajDirektnoFakturu(idPP) {
     		str +="</table><br/><br/>";
     		str +="<div id=\"divCenovnik" + data.id + "\"></div>";
     		
-    		str +="<button onclick=\"eksportujFakturu("+data.id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>";
-    		str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data.id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>";
+    		str +="<button onclick=\"eksportujFakturu("+data.id+")\"  class=\"btn btn-default\">Eksportuj fakturu</button>&nbsp";
+    		str +="<button onclick=\"otpremiFakturu("+data.id+")\"  class=\"btn btn-default\">Otpremi fakturu</button>";
+    		//str +="&nbsp&nbsp&nbsp<button onclick=\"obrisiFakturu("+data.id+")\" class=\"btn btn-danger\">Obrisi fakturu</button>";
     		str +="</div><br/><br/>";
         	
         	div.append(str);
@@ -97,27 +100,8 @@ function kreirajDirektnoFakturu(idPP) {
 function kreirajDirektnoFakturuForma() {
 	
 	$('#divCenovnikPoslovnogPartnera').empty();
-	
-	$.ajax({
-		async: false,
-		url: "http://localhost:1234/poslovniPartner/getByUlogovani",
-        type: "GET",
-       
-        success: function (data) {
-        	var select = $('#selectDodajFakturuPP');
-        	select.empty();
-        	var str="";
-        	str += "<option value=\"\" selected disabled hidden>Selektovati poslovnog partnera</option>";
-        	for(i=0; i<data.length; i++) {
-        		str += "<option value=\"" + data[i].id + "\">" + data[i].naziv + "</option>";
-        	}
-        	select.append(str);
-        },
-        error: function (jqxhr, textStatus, errorThrown) {
-        	toastr['warning'] (errorThrown);
-            
-        }
-	});
+	var cenovnikPPDiv = $('#divNasCenovnik');
+	cenovnikPPDiv.empty();
 	
 	$.ajax({
 		async: false,
@@ -140,18 +124,22 @@ function kreirajDirektnoFakturuForma() {
         }
 	});
 	
+	
 	$('#divKreirajFakturu').show();
 }
 
-function prikaziCenovnikIzabranogDobavljaca() {
+function prikaziNasCenovnik() {
 	var idPP = $('#selectDodajFakturuPP').val();
+	var date = $('#inputDateFaktura').val();
 	$.ajax({
 		async: false,
-		url: "http://localhost:1234/cenovnik/getByPP/"+idPP,
-        type: "GET",
+		url: "http://localhost:1234/cenovnik/prikaziNas",
+        type: "POST",
+        contentType:"application/json",
+        data:JSON.stringify({"date":date}),
         dataType: "json",
         success: function (data) {
-        	var cenovnikPPDiv = $('#divCenovnikPoslovnogPartnera');
+        	var cenovnikPPDiv = $('#divNasCenovnik');
         	cenovnikPPDiv.empty();
         	var str = "";
         	str += "<table style=\"width:100%;\">";
@@ -170,7 +158,7 @@ function prikaziCenovnikIzabranogDobavljaca() {
         	}
         	str += "</table></br>";
         	cenovnikPPDiv.append(str);
-        	$("#btnKreirajFakturu").attr( "onClick", "kreirajDirektnoFakturu(" + idPP + ")" );
+        	$("#btnKreirajFakturu").attr( "onClick", "kreirajDirektnoFakturu(" + data.id + ")" );
         },
         error: function (jqxhr, textStatus, errorThrown) {
         	toastr['warning'] ('Poslovni partner nema cenovnik');

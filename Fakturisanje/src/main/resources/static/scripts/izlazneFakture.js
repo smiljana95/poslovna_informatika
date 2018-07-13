@@ -1,3 +1,7 @@
+function prikaziIzlazneFakture(idPP) {
+	top.location.href = "izlazneFakture.html?idPP=" + idPP;
+}
+
 function otpremiFakturu(idFakture) {
 	$.ajax({
 		async: false,

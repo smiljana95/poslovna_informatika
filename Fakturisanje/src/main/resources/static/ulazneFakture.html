@@ -72,6 +72,7 @@ a{
 		
 		
 		<script src="scripts/ulazneFakture.js"></script>
+		<script src="scripts/sveFakture.js"></script>
 		<script src="scripts/ulazneFaktureReady.js"></script>
 		
 		<link rel="shortcut icon" href="assets/ico/favicon.png">
@@ -94,44 +95,11 @@ a{
 	    </li>
 	    
 	    
-	    <li class="dropdown">
-	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
-	        <ul class="dropdown-menu">
-	            
-	             <li><a onclick="return kreirajDirektnoFakturuForma()" style="color: #cc0000" data-toggle="tab">Fakturu</a></li>
-	        </ul>
-	    </li>
-	    
 	    <li><a href="otpremnice.html" style="color: #cc0000">Otpremnice</a></li>
 	    
 	    <li><a href="home.html" style="color: #cc0000">Home</a></li>
 	   
 	</ul>
-	
-	
-	<div id="divKreirajFakturu" style="display:none;padding:3%;">
-		<h3>Nova faktura</h3><br>
-		<div class="row">
-			<div class="col-lg-5" id="divDodajFakturu">
-				<label>Poslovni partner</label>
-				<select class="form-control" id="selectDodajFakturuPP" onchange="if (this.selectedIndex) prikaziCenovnikIzabranogDobavljaca();">
-					<option value="" selected disabled hidden>
-						Selektovati poslovnog partnera
-					</option>
-				</select><br>
-				<div id="divCenovnikPoslovnogPartnera"></div>
-				<label>Nacin placanja</label>
-				<select class="form-control" id="selectDodajFakturuNacinPlacanja">
-					<option value="" selected disabled hidden>
-						Selektovati nacin placanja
-					</option>
-				</select>
-				<br><button class="btn btn-default" id="btnKreirajFakturu">Kreiraj</button>
-			</div>
-			<div class="col-lg-7"></div>
-		</div>
-		<br/><br/><div class="okvir"></div>
-	</div>
 	
 	
 			
