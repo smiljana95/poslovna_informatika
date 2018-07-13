@@ -233,6 +233,7 @@ public class FakturaController {
 			faktura.setDatumValute(c.getTime());
 			faktura.setPoslovniPartner(poslovniPartner);
 			faktura.setOtpremljena(false);
+			faktura.setPrimljena(false);
 			faktura.setFiskalnaGodina(fiskalnaGodinaService.findByKompanijaAndAktivna(ulogovani.getKompanija().getId()));
 			faktura.setKompanija(ulogovani.getKompanija());
 			faktura.setNacinPlacanja(nacinPlacanja);

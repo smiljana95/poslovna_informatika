@@ -72,6 +72,8 @@ a{
 		
 		<script src="scripts/izlazneFaktureReady.js"></script>
 		<script src="scripts/izlazneFakture.js"></script>
+		<script src="scripts/faktura.js"></script>
+		<script src="scripts/sveFakture.js"></script>
 		
 		<script src="toastr/toastr.min.js"></script>
     	<link href="toastr/toastr.min.css" rel="stylesheet"/>
@@ -94,17 +96,36 @@ a{
 	    <li class="dropdown">
 	    <a class="dropdown-toggle" data-toggle="dropdown" id="tabKreirajNovo" style="color: #cc0000" >Kreiraj<span class="caret"></span></a>
 	        <ul class="dropdown-menu">
-	          <li><a onclick="return kreirajDirektnoNarudzbenicuShowModal()" style="color: #cc0000">Narudzbenicu</a></li>
+	          <li><a onclick="return kreirajDirektnoFakturuForma()" style="color: #cc0000" data-toggle="tab">Fakturu</a></li>
 	        </ul>
 	    </li>
 	    
-	    <li><a href="fakture.html" style="color: #cc0000">Fakture</a></li>
 	    
 	    <li><a href="otpremnice.html" style="color: #cc0000">Otpremnice</a></li>
 	    
 	    <li><a href="home.html" style="color: #cc0000">Home</a></li>
 	   
 	</ul>
+	
+	<div id="divKreirajFakturu" style="display:none;padding-left:3%;"><div class="okvir">
+		<h3>Nova faktura</h3><br>
+		<div class="row">
+			<div class="col-lg-5" id="divDodajFakturu">
+				<label>Datum</label>
+				<input type="date" id="inputDateFaktura" class="form-control"/><br/>
+				<div id="divNasCenovnik"></div>
+				<label>Nacin placanja</label>
+				<select class="form-control" id="selectDodajFakturuNacinPlacanja">
+					<option value="" selected disabled hidden>
+						Selektovati nacin placanja
+					</option>
+				</select>
+				<br><button class="btn btn-default" id="btnKreirajFakturu">Kreiraj</button>
+			</div>
+			<div class="col-lg-7"></div>
+		</div>
+		</div>
+	</div>
 	
 	
 			

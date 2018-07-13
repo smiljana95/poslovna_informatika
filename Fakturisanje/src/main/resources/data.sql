@@ -310,7 +310,7 @@ insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (29
 
 
 --Iron sport
-insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (31, 8, 4300, 0);
+insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (30, 8, 4300, 0);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (31, 8, 990, 0);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (32, 8, 12500, 10);
 insert into stavkaucenovniku (id_artikla, id_cenovnika, cena, popust) values (33, 8, 9900, 0);
@@ -452,3 +452,95 @@ insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena,
 insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
 	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
 	values (10, 200, 0, 2000, 200, 10, 2200, 7, 38);	
+	
+	
+	
+--ulazne fakture - Medifit MAX
+	insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (1,'2017-12-12 21:00:00','2019-02-21 21:00:00','75','121-856642-55',2900,29,29900,1,1,1,1,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (20, 1200, 0, 24000, 2400, 10, 26400, 1, 1);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 500, 0, 5000, 500, 10, 5500, 1, 2);
+	
+	
+insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (2,'2018-01-21 21:00:00','2019-02-21 21:00:00','75','121-856642-55',42000,42680,3880,1,1,1,1,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 1000, 0, 10000, 1000, 10, 11000, 2, 3);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 3200, 10, 28800, 2880, 10, 31680, 2, 4);
+	
+--ulazne fakture - sport vision
+	insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (3,'2016-05-22 21:00:00','2018-03-12 21:00:00','51','032-307824-55',17000,102000,85000,1,1,1,4,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 5500, 0, 55000, 11000, 20, 66000, 3, 12);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 3000, 0, 30000, 6000, 20, 36000, 3, 14);
+	
+--ulazne fakture - Medifit DOO
+	insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (4,'2018-01-21 21:00:00','2019-02-21 21:00:00','23','444-954120-77',5990,65890,32900,1,1,1,9,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 2990, 0, 29900, 2990, 10, 32890, 4, 18);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 3000, 0, 30000, 3000, 10, 33000, 4, 20);
+	
+insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (5,'2018-01-21 21:00:00','2019-02-21 21:00:00','23','444-954120-77',6990,75890,43900,1,1,1,9,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 2990, 0, 29900, 2990, 10, 32890, 5, 18);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 3000, 0, 30000, 3000, 10, 33000, 5, 20);
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 1000, 0, 10000, 1000, 10, 11000, 5, 21);
+	
+--ulazne fakture - Iron Sport
+	insert into Faktura (broj_fakture,datum_fakture,datum_valute,poziv_na_broj,racun_za_uplatu,ukupanpdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,otpremljena,primljena)
+	values (6,'2018-01-21 21:00:00','2019-02-21 21:00:00','54','554-459210-100',1519,151900,153419,1,1,1,12,false,true);
+
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 4300, 0, 43000, 430, 10, 43430, 6, 30);		
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 990, 0, 9900, 99, 10, 9999, 6, 31);
+insert into stavkaufakturi (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdva, id_fakture, id_artikla)
+	values (10, 9900, 0, 99000, 990, 10, 99990, 6, 33);
+	
+--primljene narudzbine -Ortopom
+	insert into Narudzbenica (broj_narudzbenice,datum_narudzbenice,poziv_na_broj,racun_za_uplatu,ukupan_pdv,
+	ukupna_cena,ukupna_cena_bezpdva,id_fiskalne_godine,id_kompanije,id_nacina_placanja,id_pp,od_kupca, poslata)
+	values (8,'2018-01-21 21:00:00','21','101-105876-84',3020,33220,36240,1,1,1,10,true, false);
+
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 1760, 0, 17600, 1760, 10, 19360, 8, 22);		
+insert into stavkaunarudzbenici (ukupna_kolicina, jedinicna_cena, 
+	popust, osnovica, iznospdva, stopapdva, jedinicna_cena_sapdv, id_narudzbenice, id_artikla)
+	values (10, 1260, 0, 12600, 1260, 10, 13860, 8, 24);	
+

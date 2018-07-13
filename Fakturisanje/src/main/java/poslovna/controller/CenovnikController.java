@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import poslovna.converter.ArtikalToArtikalDTOConverter;
 import poslovna.converter.CenovnikToCenovnikDTOConverter;
 import poslovna.dto.CenovnikDTO;
+import poslovna.dto.DatumDTO;
 import poslovna.dto.KopiranjeCenovnikaDTO;
 import poslovna.dto.StavkaCenovnikaDTO;
 import poslovna.model.Artikal;
@@ -250,4 +251,56 @@ public class CenovnikController {
 		}
 	return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnici), HttpStatus.OK);
 	}
+	
+	
+	
+	@RequestMapping(
+			value = "/prikaziNas",
+			method = RequestMethod.POST
+	)
+	public ResponseEntity<?> prikaziNas(@RequestBody DatumDTO datumDTO){
+		ArrayList<Cenovnik> cenovnici = (ArrayList<Cenovnik>) cenovnikService.findByKompanija(1L);
+		
+		Collections.sort(cenovnici, new Comparator<Cenovnik>() {
+			
+			@Override
+			public int compare(Cenovnik arg0, Cenovnik arg1) {
+				return arg0.getDatum_pocetka_vazenja().compareTo(arg1.getDatum_pocetka_vazenja());
+			}
+			});
+		boolean setted = false;
+		for(int i = 0; i < cenovnici.size(); i++){
+			cenovnici.get(i).setAktivan(false);
+		}
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date datum;
+		try {
+			datum = df.parse(datumDTO.getDate());
+		} catch (ParseException e) {
+			return new ResponseEntity<>("Pogresan format.", HttpStatus.BAD_REQUEST);
+		}
+		for(int i = 0; i < cenovnici.size(); i++){
+			if(cenovnici.get(i).getDatum_pocetka_vazenja().after(datum)){
+				if(i>0){
+					int brAktivnog = i-1;
+					cenovnici.get(brAktivnog).setAktivan(true);
+					cenovnikService.save(cenovnici.get(brAktivnog));
+					setted = true;
+					break;
+				}else{
+					cenovnici.get(0).setAktivan(true);
+					cenovnikService.save(cenovnici.get(0));
+					setted = true;
+					break;
+				}
+			}
+		}
+		Cenovnik cenovnik = null;
+		if(!setted){
+			cenovnik = cenovnici.get(cenovnici.size()-1);
+		}
+	return new ResponseEntity<>(cenovnikToCenovnikDTOConverter.convert(cenovnik), HttpStatus.OK);
+	}
+	
+	
 }
